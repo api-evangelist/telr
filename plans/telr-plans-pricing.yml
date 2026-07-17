@@ -1,0 +1,236 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Telr
+providerId: telr
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: true
+tags:
+- Payments
+- Payment Gateway
+- FinTech
+- MENA
+- UAE
+- Plans
+description: >-
+  Telr sells the payment gateway to merchants on volume-banded monthly plans
+  with per-transaction pricing, rather than metering API calls. UAE plans are
+  priced in AED and Saudi Arabia plans in SAR; local rails (mada, STC Pay, UR
+  Pay) carry distinct rates in KSA. There is no published setup fee for the
+  standard tiers (bank setup fees may apply separately). High-volume merchants
+  (>AED 500,000/month) get custom pricing. All fees are subject to VAT (5% UAE,
+  15% KSA). The developer APIs themselves are free to use with a merchant
+  account.
+notes: >-
+  Rates transcribed from the Telr pricing page on 2026-07-17; verify current
+  bands and rates on the page, which vary by region and are subject to VAT and
+  acquiring-bank terms.
+sources:
+- https://telr.com/pricing
+- https://telr.com/sa-en/pricing/
+plans:
+- id: telr-uae-entry
+  name: Entry (UAE)
+  type: subscription
+  description: >-
+    UAE plan for AED 0-20,000/month volume. Flat monthly fee with zero
+    percentage or fixed per-transaction commission.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: AED 349/month
+    userMultiplied: false
+  - label: Transaction Fee
+    name: transaction_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: 0% + AED 0.00
+    userMultiplied: false
+  elements:
+  - name: Hosted Payment Page
+  - name: Remote API
+  - name: Payment Links and Invoicing
+  - name: Apple Pay / Google Pay / Samsung Pay
+- id: telr-uae-small
+  name: Small (UAE)
+  type: subscription
+  description: UAE plan for AED 20,001-50,000/month volume.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: AED 149/month
+    userMultiplied: false
+  - label: Transaction Fee
+    name: transaction_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: 2.69% + AED 1.00 per transaction
+    userMultiplied: false
+  elements:
+  - name: All gateway APIs
+- id: telr-uae-medium
+  name: Medium (UAE)
+  type: subscription
+  description: UAE plan for AED 50,000+/month volume.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: AED 99/month
+    userMultiplied: false
+  - label: Transaction Fee
+    name: transaction_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: AE
+    unit: 1
+    price: 2.49% + AED 0.50 per transaction
+    userMultiplied: false
+  elements:
+  - name: All gateway APIs
+- id: telr-ksa-startup
+  name: Startup (KSA)
+  type: subscription
+  description: >-
+    Saudi Arabia plan for SAR 0-30,000/month volume, with local-rail rates for
+    mada, STC Pay, and UR Pay.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: SAR 99/month
+    userMultiplied: false
+  - label: Credit Card Fee
+    name: credit_card_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: 3.00% + SAR 1.00 per transaction
+    userMultiplied: false
+  - label: mada (local debit) Fee
+    name: mada_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: 1.00% (mada), 0.90% (STC Pay), 0.80% (UR Pay)
+    userMultiplied: false
+  elements:
+  - name: mada
+  - name: STC Pay
+  - name: UR Pay
+- id: telr-ksa-sme
+  name: SME (KSA)
+  type: subscription
+  description: Saudi Arabia plan for SAR 30,001-80,000/month volume.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: SAR 179/month
+    userMultiplied: false
+  - label: Credit Card Fee
+    name: credit_card_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: 2.75% + SAR 1.00 per transaction
+    userMultiplied: false
+  elements:
+  - name: mada / STC Pay / UR Pay (as Startup)
+- id: telr-ksa-sme-plus
+  name: SME Plus (KSA)
+  type: subscription
+  description: Saudi Arabia plan for SAR 80,001-300,000/month volume.
+  entries:
+  - label: Monthly Fee
+    name: monthly_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: SAR 259/month
+    userMultiplied: false
+  - label: Credit Card Fee
+    name: credit_card_fee
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: SA
+    unit: 1
+    price: 2.60% + SAR 1.00 per transaction
+    userMultiplied: false
+  elements:
+  - name: mada / STC Pay / UR Pay (as Startup)
+- id: telr-volume
+  name: Volume / Enterprise
+  type: enterprise
+  description: >-
+    Custom pricing for merchants processing above AED 500,000/month (or the
+    KSA equivalent). Negotiated rates and tailored terms.
+  entries:
+  - label: Custom Agreement
+    name: custom
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Split Payments / Marketplace
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

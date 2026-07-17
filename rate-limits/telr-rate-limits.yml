@@ -1,0 +1,62 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Telr
+providerId: telr
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Payments
+- Payment Gateway
+- MENA
+- UAE
+- Rate Limiting
+- Quotas
+description: >-
+  Telr does not publish explicit numeric per-second/per-minute rate limits for
+  its gateway (order.json / remote.json) or REST (/api/v1) endpoints. Access is
+  governed instead by per-store Service API keys, which can be scoped to
+  specific services and restricted to a set of publicly-routable IP addresses
+  (comma-separated allow-list). Abuse controls, anti-fraud/risk screening, and
+  duplicate-transaction protection (unique cart id enforcement, e.g. error
+  "E56:Duplicate transaction") act as the practical throttles rather than a
+  documented request-rate quota.
+notes: >-
+  No documented RPM/RPS quota was found in the Telr developer docs on
+  2026-07-17. Verify any account-specific limits with Telr merchant support;
+  values are not reconciled in this artifact.
+sources:
+- https://docs.telr.com/reference/api-configuration
+- https://docs.telr.com/reference/createorder
+responseCodes:
+  throttled: null
+limits:
+- name: Request Rate
+  scope: store
+  metric: requests
+  limit: not published
+  notes: No numeric RPM/RPS limit is documented; governed by anti-fraud/risk controls.
+- name: IP Allow-list
+  scope: api_key
+  metric: source_ips
+  limit: configurable
+  notes: Service API keys can restrict access to specific publicly-routable IP addresses (comma-separated). Private/internal IPs are not accepted.
+- name: Duplicate Transaction Protection
+  scope: store
+  metric: cart_id
+  limit: unique per order
+  notes: Cart id must be unique per order; duplicates are rejected (e.g. E56).
+- name: Webhooks
+  scope: order
+  metric: endpoints
+  limit: 2
+  notes: The REST Payments API accepts up to two webhook URLs per order.
+policies:
+- name: Key Scoping
+  description: API keys are scoped to permitted services and IP ranges in Merchant Administration.
+- name: Backoff Strategy
+  description: Clients should retry idempotently on transient failures using a fresh unique cart id only when the prior order is confirmed not created.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

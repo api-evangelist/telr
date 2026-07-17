@@ -1,0 +1,109 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Telr
+providerId: telr
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: true
+tags:
+- Payments
+- Payment Gateway
+- MENA
+- UAE
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Telr merchant spend. Telr bills a fixed monthly plan fee plus
+  per-transaction cost (a percentage of transaction value plus a fixed
+  per-transaction fee), banded by monthly processing volume and region. UAE is
+  billed in AED, Saudi Arabia in SAR, with distinct rates for local rails (mada,
+  STC Pay, UR Pay). VAT applies (5% UAE, 15% KSA). Cost drivers are transaction
+  count, average ticket size, method mix (card vs. local wallet), and
+  refund/chargeback activity rather than API call volume.
+notes: >-
+  Percentage + fixed fees vary by plan band and region; verify against the Telr
+  pricing page during reconciliation. Acquiring-bank setup/monthly fees may
+  apply separately.
+sources:
+- https://telr.com/pricing
+- https://telr.com/sa-en/pricing/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Telr
+serviceCategory: Financial Services
+billingModel:
+  pricingCategory: Subscription-Plus-Usage
+  billingFrequency: Monthly
+  billingCurrency: AED
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Tax
+  - Adjustment
+focusColumns:
+  ServiceName: Telr Payment Gateway
+  ServiceCategory: Financial Services
+  ProviderName: Telr
+  PublisherName: Telr
+  InvoiceIssuerName: Telr
+  BillingCurrency: AED
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Plus-Usage
+meters:
+- name: monthly_plan_fee
+  description: Fixed monthly gateway plan fee, banded by processing volume and region.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - store
+  - region
+  - plan
+- name: transaction_percentage_fee
+  description: Percentage of transaction value charged per successful transaction.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - store
+  - method
+  - currency
+- name: transaction_fixed_fee
+  description: Fixed per-transaction fee (e.g. AED 0.50-1.00 or SAR 1.00).
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - store
+  - method
+  - currency
+- name: local_rail_fee
+  description: Distinct rates for local rails (mada, STC Pay, UR Pay) in KSA.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - store
+  - rail
+- name: vat
+  description: Value-added tax applied to fees (5% UAE, 15% KSA).
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - store
+  - region
+principles:
+- name: Visibility
+  description: Pull settlement and fee reports from Merchant Administration; break out fees by method and currency.
+- name: Allocation
+  description: Tag stores/sub-merchants per brand or marketplace seller; map split-payment fees to the right cost center.
+- name: Optimization
+  description: Route local KSA payments to mada/STC Pay/UR Pay (lower rates than credit card); pick the volume band that matches monthly throughput; reduce chargebacks with 3-D Secure and risk rules.
+- name: Accountability
+  description: Reconcile monthly plan + per-transaction fees against processed volume; review method mix against the plan band each month.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

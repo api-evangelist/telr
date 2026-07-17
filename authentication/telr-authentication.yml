@@ -1,0 +1,41 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/telr-openapi.yml + https://docs.telr.com/reference/authentication + https://docs.telr.com/reference/api-configuration
+summary:
+  types:
+  - http
+  - custom
+schemes:
+- name: store_authkey
+  type: custom
+  in: body
+  description: >-
+    Legacy gateway endpoints (order.json, remote.json, manageagreement.json)
+    authenticate with a numeric "store" id plus an "authkey" (authentication
+    key) passed inside the JSON request body - not an HTTP header. The auth key
+    is generated per store in Merchant Administration.
+  parameters:
+  - store
+  - authkey
+  sources:
+  - openapi/telr-openapi.yml
+  - https://docs.telr.com/reference/how-the-hosted-payment-page-works
+- name: basic_auth
+  type: http
+  scheme: basic
+  bearerFormat: null
+  description: >-
+    The REST Service / Payments / Accounts API (/api/v1/*) uses HTTP Basic
+    authentication - username = store/merchant id, password = API key, Base64
+    encoded as "Authorization: Basic <base64(storeid:apikey)>". API keys are
+    created in Merchant Administration under Integrations > Service API and can
+    be scoped to specific services and restricted to publicly-routable IP
+    addresses (comma-separated).
+  sources:
+  - https://docs.telr.com/reference/authentication
+  - https://docs.telr.com/reference/api-configuration
+notes: >-
+  Two distinct auth styles coexist: in-body store+authkey for the classic
+  gateway JSON endpoints, and HTTP Basic (store id : API key) for the newer
+  REST /api/v1 surfaces. IP allow-listing is strongly recommended for Service
+  API keys.

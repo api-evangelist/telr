@@ -1,0 +1,215 @@
+aid: telr
+url: https://raw.githubusercontent.com/api-evangelist/telr/refs/heads/main/apis.yml
+name: Telr
+kind: company
+description: Telr is a Dubai-headquartered online payment gateway operating across
+  the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies
+  and 30 languages. Its HTTPS/JSON gateway exposes a Hosted Payment Page, a Remote
+  (direct) card and wallet API, repeat-billing agreements, mobile SDKs, and a newer
+  REST Payments API - all PCI DSS v4.0 Level 1 and NESA certified.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- Payment Gateway
+- FinTech
+- MENA
+- UAE
+created: '2026-07-17'
+modified: '2026-07-17'
+specificationVersion: '0.19'
+apis:
+- aid: telr:telr-hosted-payment-page-api
+  name: Telr Hosted Payment Page API
+  tags:
+  - Payments
+  - Hosted Checkout
+  - Redirect
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/how-the-hosted-payment-page-works
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/how-the-hosted-payment-page-works
+    type: Documentation
+  - url: https://docs.telr.com/reference/createorder
+    type: APIReference
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Redirect-based hosted checkout. POST order.json with method=create to
+    receive a process.html payment URL branded with your logo/CSS, then method=check
+    to poll order status. Store id + authentication key are passed in the JSON body;
+    no PCI scope required.
+- aid: telr:telr-remote-api
+  name: Telr Remote API
+  tags:
+  - Payments
+  - Direct
+  - Server to Server
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/post_gateway-remote-json
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://telr.com/support/knowledge-base/remote-api-integration-guide/
+    type: Documentation
+  - url: https://docs.telr.com/reference/post_gateway-remote-json
+    type: APIReference
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Server-to-server direct API (remote.json) giving full control of the
+    checkout UI by capturing card details on your own site. Supports sale/auth/capture/refund/void
+    transactions with ecom, moto, and cont classes; requires appropriate PCI scope
+    for raw card data.
+- aid: telr:telr-digital-wallets-api
+  name: Telr Digital Wallets API
+  tags:
+  - Apple Pay
+  - Google Pay
+  - Samsung Pay
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/post_remote_applepay
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/payment-pages-v2-applepay-integration
+    type: Documentation
+  - url: https://docs.telr.com/reference/post_remote_applepay
+    type: APIReference
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Wallet transactions (Apple Pay, Google Pay, Samsung Pay) submitted through
+    remote.json with an encrypted wallet token or decrypted network token, or enabled
+    on the hosted payment page. Same store + authkey body authentication.
+- aid: telr:telr-repeat-billing-api
+  name: Telr Repeat Billing API
+  tags:
+  - Recurring
+  - Subscriptions
+  - Agreements
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/repeat-billing
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/repeat-billing
+    type: Documentation
+  - url: https://docs.telr.com/reference/post_gateway-manageagreement-json
+    type: APIReference
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Create, amend, forecast, and cancel recurring repeat-billing agreements
+    against stored cards (manageagreement.json), supporting card change, future cancel
+    dates, and subscription/instalment schedules.
+- aid: telr:telr-payments-rest-api
+  name: Telr Payments REST API
+  tags:
+  - Payments
+  - REST
+  - Orders
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/createorder
+  baseURL: https://secure.telr.com/api/v1
+  properties:
+  - url: https://docs.telr.com/reference/createorder
+    type: APIReference
+  - url: https://docs.telr.com/reference/getorder
+    type: APIReference
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Newer REST order API (/api/v1/orders) authenticated with HTTP Basic
+    auth (store id as username, API key as password). Create orders with SALE/AUTH/VERIFY
+    transaction types,
+    up to two webhooks, and hypermedia _links; retrieve status by order ref.
+- aid: telr:telr-mobile-api
+  name: Telr Mobile API and SDKs
+  tags:
+  - Mobile
+  - Web View
+  - SDK
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/mobile-api-integration-guide
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/mobile-api-integration-guide
+    type: Documentation
+  - url: https://docs.telr.com/reference/introduction-to-mobile-sdks
+    type: Documentation
+  - url: openapi/telr-openapi.yml
+    type: OpenAPI
+  description: Mobile integration that drives the Hosted Payment Page inside a web
+    view, offloading PCI-DSS scope and 3-D Secure handling. Native SDKs are published
+    for Android, iOS, Flutter, and React Native.
+- aid: telr:telr-accounts-split-payments-api
+  name: Telr Accounts and Split Payments API
+  tags:
+  - Marketplace
+  - Split Payments
+  - Payouts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/split-payment
+  baseURL: https://secure.telr.com/api/v1
+  properties:
+  - url: https://docs.telr.com/reference/split-payment
+    type: Documentation
+  - url: https://docs.telr.com/reference/authentication
+    type: APIReference
+  description: Marketplace / split-payment Service API for sub-merchant onboarding,
+    multi-split payments, debit/credit of sub-merchant accounts, payouts, and transaction
+    reconciliation. Authenticated with HTTP Basic auth (merchant id as username,
+    API key as password).
+- aid: telr:telr-quicklink-einvoicing-api
+  name: Telr QuickLink and E-Invoicing API
+  tags:
+  - Invoicing
+  - Payment Links
+  - E-Invoice
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/introduction-to-e-invoicing
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/introduction-to-e-invoicing
+    type: Documentation
+  - url: https://docs.telr.com/reference/remote-creation-of-invoices
+    type: APIReference
+  description: Remote creation of QuickLink payment links and e-invoices with extra
+    data fields, for merchants who collect payment without a full checkout integration.
+- aid: telr:telr-click-to-pay-api
+  name: Telr Click to Pay (C2P) API
+  tags:
+  - Click to Pay
+  - Tokenization
+  - EMV SRC
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.telr.com/reference/introduction-c2p
+  baseURL: https://secure.telr.com/gateway
+  properties:
+  - url: https://docs.telr.com/reference/introduction-c2p
+    type: Documentation
+  - url: https://docs.telr.com/reference/c2p-remote
+    type: APIReference
+  description: EMV Secure Remote Commerce (Click to Pay) checkout, available as a seamless
+    integration or through the remote JSON API for tokenized card-on-file payments.
+common:
+- type: AgenticAccess
+  url: agentic-access/telr-agentic-access.yml
+- type: TrustCenter
+  url: security/telr-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/telr-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/telr-domain-security.yml
+- type: Authentication
+  url: authentication/telr-authentication.yml
+- type: Website
+  url: https://telr.com/
+- type: Documentation
+  url: https://docs.telr.com/
+- type: Plans
+  url: plans/telr-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/telr-rate-limits.yml
+- type: FinOps
+  url: finops/telr-finops.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/telr
+- url: https://telr.com/blog/
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

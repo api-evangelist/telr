@@ -1,0 +1,92 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/telr-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents - review and bind
+  audience per deployment. Note - these operations move money (card/wallet charges, recurring
+  agreements); default to human-in-the-loop for financial writes. See research/curity/agentic-access/.
+summary:
+  operations: 5
+  by_action_class:
+    acting: 4
+    connected: 1
+  by_consequence:
+    write: 4
+    read: 1
+  human_in_the_loop_required: 3
+operations:
+- path: /gateway/order.json
+  method: post
+  operationId: createHostedOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - high-value
+      - abnormal
+    audit: required
+- path: /gateway/remote.json
+  method: post
+  operationId: createRemoteTransaction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - card-data
+      - high-value
+    audit: required
+- path: /gateway/manageagreement.json
+  method: post
+  operationId: manageAgreement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - recurring-billing
+      - money-movement
+    audit: required
+- path: /api/v1/orders
+  method: post
+  operationId: createOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - high-value
+    audit: required
+- path: /api/v1/orders/{ref}
+  method: get
+  operationId: getOrder
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

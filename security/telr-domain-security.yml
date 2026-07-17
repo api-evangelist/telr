@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + docs hosts (2026-07-17)
+hosts:
+- host: telr.com
+  https: true
+  tls_issuer: Google Trust Services (WE1)
+  cert_not_before: Jun  6 06:01:18 2026 GMT
+  cert_expires: Sep  4 07:01:06 2026 GMT
+  http_status: 200
+- host: secure.telr.com
+  https: true
+  tls_issuer: Google Trust Services (WE1)
+  cert_not_before: Jun 24 03:27:34 2026 GMT
+  cert_expires: Sep 22 04:27:27 2026 GMT
+  http_status: 405
+  note: Payment gateway host; 405 on GET / (POST-only JSON endpoints under /gateway and /api/v1). GET /gateway/order.json returned 200.
+- host: docs.telr.com
+  https: true
+  tls_issuer: Let's Encrypt (YE2)
+  cert_not_before: Jul 16 20:41:15 2026 GMT
+  cert_expires: Oct 14 20:41:14 2026 GMT
+  http_status: 302
+domains:
+- domain: telr.com
+  security_txt: false
+  security_txt_status: 404
+  note: No /.well-known/security.txt published at telr.com as of the probe date.
+compliance:
+- PCI DSS v4.0 Level 1
+- NESA certified (first PCI-DSS Level 1 & NESA-certified company in MENA)
+- Central Bank of the UAE Retail Payment Services (RPS) license
+- 3-D Secure (payer authentication) supported on hosted and remote flows

@@ -1,0 +1,73 @@
+aid: telr
+name: Telr
+review:
+  question: Does Telr expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-17'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Telr's payment gateway is a
+    request/response HTTPS + JSON (and legacy XML) system. There is no
+    WebSocket surface, and no HTTP Server-Sent Events (SSE) streaming
+    surface either. Asynchronous result delivery is handled by ordinary
+    HTTP webhooks (merchant-hosted callback URLs) and by polling the
+    order status endpoint (order.json method=check), neither of which is
+    a streaming transport in AsyncAPI scope.
+findings:
+  summary: |
+    Telr does not publish a documented public WebSocket API. All documented
+    integration surfaces are synchronous HTTPS request/response endpoints
+    under https://secure.telr.com - the Hosted Payment Page (order.json),
+    the Remote / Direct API (remote.json), repeat-billing agreements
+    (manageagreement.json), the REST Payments API (/api/v1/orders), and the
+    Service / Accounts split-payment API (/api/v1/accounts). Asynchronous
+    notification is via HTTP webhooks configured per store/order, plus
+    status polling; no ws:// or wss:// endpoint is documented anywhere in
+    the Telr developer docs or knowledge base.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://secure.telr.com/gateway
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://secure.telr.com/api/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Merchant-hosted callback URLs receive transaction/agreement notifications. Outbound HTTP POST, not a client-consumable streaming socket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Telr's API reference, mobile API/SDK guides, or knowledge base as of the review date.
+  endpointsConfirmedRest:
+    - POST https://secure.telr.com/gateway/order.json
+    - POST https://secure.telr.com/gateway/remote.json
+    - POST https://secure.telr.com/gateway/manageagreement.json
+    - POST https://secure.telr.com/api/v1/orders
+    - GET  https://secure.telr.com/api/v1/orders/{ref}
+    - POST https://secure.telr.com/api/v1/accounts/{accountId}/debit
+    - POST https://secure.telr.com/api/v1/accounts/{submerchantAccountId}/credit
+sources:
+  - url: https://docs.telr.com/
+    type: Documentation
+    note: Integration methods index lists Hosted Payment Page, Remote API, Mobile API, wallets, repeat billing, split payments; all HTTPS request/response.
+  - url: https://docs.telr.com/reference/how-the-hosted-payment-page-works
+    type: Documentation
+    note: Hosted checkout uses POST to gateway/order.json then a process.html redirect; async result via webhook + status check.
+  - url: https://docs.telr.com/reference/post_gateway-remote-json
+    type: APIReference
+    note: Remote/direct transactions are synchronous POST to gateway/remote.json returning JSON.
+  - url: https://docs.telr.com/reference/webhook
+    type: Documentation
+    note: Asynchronous notification is via merchant-hosted HTTP webhooks, not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket protocol surface exists and no SSE streaming surface
+    exists. Asynchronous delivery is handled by HTTP webhooks and status
+    polling, which are outside AsyncAPI scope, so no AsyncAPI document was
+    authored and no AsyncAPI pointer was added to apis.yml.

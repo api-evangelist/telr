@@ -1,0 +1,23 @@
+generated: '2026-07-17'
+method: searched
+probe: true
+source: https://telr.com/secure
+url: https://telr.com/secure
+certifications:
+- PCI DSS v4.0 Level 1
+- NESA
+- Central Bank of the UAE Retail Payment Services License
+- 3-D Secure
+- GDPR
+evidence:
+- source: https://telr.com/secure
+  keywords:
+  - pci dss level 1
+  - nesa
+  - 3d secure
+  - anti-fraud
+  - risk management
+- source: https://www.zawya.com/en/press-release/companies-news/telr-has-been-granted-the-retail-payment-services-license-from-the-central-bank-of-the-uae-ck1whaku
+  keywords:
+  - central bank of the uae
+  - retail payment services license

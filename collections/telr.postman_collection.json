@@ -1,0 +1,190 @@
+{
+  "info": {
+    "name": "Telr Payment Gateway API",
+    "description": "Telr (Dubai, UAE) payment gateway - Hosted Payment Page (order.json), Remote/Direct API (remote.json), repeat-billing agreements (manageagreement.json), and the REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with store + authkey in the JSON body; the REST API uses HTTP Basic auth (store id : API key). Modeled from https://docs.telr.com. Amounts are in major currency units (e.g. AED 9.50).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://secure.telr.com"
+    },
+    {
+      "key": "store",
+      "value": "00000000"
+    },
+    {
+      "key": "authkey",
+      "value": "YOUR_AUTH_KEY"
+    },
+    {
+      "key": "apiKey",
+      "value": "YOUR_API_KEY"
+    }
+  ],
+  "item": [
+    {
+      "name": "Hosted Payment Page",
+      "item": [
+        {
+          "name": "Create hosted order",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway/order.json",
+              "host": ["{{baseUrl}}"],
+              "path": ["gateway", "order.json"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"method\": \"create\",\n  \"store\": {{store}},\n  \"authkey\": \"{{authkey}}\",\n  \"framed\": 0,\n  \"order\": {\n    \"cartid\": \"ORDER-1001\",\n    \"test\": 1,\n    \"amount\": \"9.50\",\n    \"currency\": \"AED\",\n    \"description\": \"Order 1001\"\n  },\n  \"return\": {\n    \"authorised\": \"https://example.com/success\",\n    \"declined\": \"https://example.com/declined\",\n    \"cancelled\": \"https://example.com/cancelled\"\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Check order status",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway/order.json",
+              "host": ["{{baseUrl}}"],
+              "path": ["gateway", "order.json"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"method\": \"check\",\n  \"store\": {{store}},\n  \"authkey\": \"{{authkey}}\",\n  \"order\": {\n    \"ref\": \"OrderRef\"\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Remote",
+      "item": [
+        {
+          "name": "Direct card sale",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway/remote.json",
+              "host": ["{{baseUrl}}"],
+              "path": ["gateway", "remote.json"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"store\": {{store}},\n  \"authkey\": \"{{authkey}}\",\n  \"method\": \"transaction\",\n  \"tran\": {\n    \"id\": \"ORDER-1002\",\n    \"type\": \"sale\",\n    \"class\": \"ecom\",\n    \"description\": \"Order 1002\",\n    \"amount\": \"25.00\",\n    \"currency\": \"AED\",\n    \"test\": 1\n  },\n  \"card\": {\n    \"number\": \"4111111111111111\",\n    \"expiry\": { \"month\": 12, \"year\": 2030 },\n    \"cvv\": \"123\"\n  },\n  \"customer\": {\n    \"email\": \"buyer@example.com\",\n    \"name\": { \"firstName\": \"Aisha\", \"lastName\": \"Khan\" },\n    \"address\": { \"city\": \"Dubai\", \"country\": \"AE\" }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Apple Pay transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway/remote.json",
+              "host": ["{{baseUrl}}"],
+              "path": ["gateway", "remote.json"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"store\": {{store}},\n  \"authkey\": \"{{authkey}}\",\n  \"method\": \"wallet\",\n  \"tran\": {\n    \"id\": \"ORDER-1003\",\n    \"type\": \"sale\",\n    \"class\": \"ecom\",\n    \"description\": \"Order 1003\",\n    \"amount\": \"49.00\",\n    \"currency\": \"AED\",\n    \"test\": 1\n  },\n  \"applepay\": {\n    \"token\": \"<APPLE_PAY_ENCRYPTED_PAYLOAD_OR_NETWORK_TOKEN>\"\n  },\n  \"customer\": {\n    \"email\": \"buyer@example.com\"\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agreements",
+      "item": [
+        {
+          "name": "Manage repeat-billing agreement",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway/manageagreement.json",
+              "host": ["{{baseUrl}}"],
+              "path": ["gateway", "manageagreement.json"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"store\": {{store}},\n  \"authkey\": \"{{authkey}}\",\n  \"method\": \"manage\",\n  \"agreement\": {\n    \"ref\": \"AGREEMENT-REF\",\n    \"type\": \"recurring\",\n    \"amount\": \"19.99\",\n    \"currency\": \"AED\"\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments API (REST)",
+      "item": [
+        {
+          "name": "Create order",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                { "key": "username", "value": "{{store}}" },
+                { "key": "password", "value": "{{apiKey}}" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "orders"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"cartId\": \"ORDER-1004\",\n  \"transactionType\": \"SALE\",\n  \"amount\": { \"value\": \"75.00\", \"currency\": \"AED\" },\n  \"currency\": \"AED\",\n  \"description\": \"Order 1004\",\n  \"test\": true,\n  \"customer\": {\n    \"email\": \"buyer@example.com\",\n    \"name\": { \"title\": \"Ms\", \"firstName\": \"Aisha\", \"lastName\": \"Khan\" },\n    \"address\": { \"line1\": \"1 Sheikh Zayed Rd\", \"city\": \"Dubai\", \"country\": \"AE\" },\n    \"phone\": \"+971500000000\"\n  },\n  \"webhooks\": [\"https://example.com/webhook\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Get order",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                { "key": "username", "value": "{{store}}" },
+                { "key": "password", "value": "{{apiKey}}" }
+              ]
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/:ref",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "orders", ":ref"],
+              "variable": [
+                { "key": "ref", "value": "OrderRef" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
