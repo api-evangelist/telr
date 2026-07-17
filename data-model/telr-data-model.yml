@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/telr-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the OpenAPI schemas and id-reference
+  fields. Telr identifiers: order ref, cartid/cartId (merchant-supplied), and
+  transaction ref (used for capture/refund/void via the original ref).
+entities:
+- name: Order
+  id_fields: [ref, cartId]
+  schema: openapi/telr-openapi.yml#/components/schemas/Order
+  states: [PENDING, AUTHORISED, PAID, CANCELLED, DECLINED]
+- name: HostedOrder
+  id_fields: [ref, cartid]
+  schema: openapi/telr-openapi.yml#/components/schemas/HostedOrder
+- name: Transaction
+  id_fields: [ref]
+  schema: openapi/telr-openapi.yml#/components/schemas/RemoteResponse
+  types: [sale, auth, capture, refund, void]
+  classes: [ecom, moto, cont]
+- name: Agreement
+  id_fields: [ref]
+  schema: openapi/telr-openapi.yml#/components/schemas/AgreementRequest
+  types: [recurring, instalment, unscheduled]
+- name: Customer
+  schema: openapi/telr-openapi.yml#/components/schemas/Customer
+relationships:
+- {from: Order, type: has_one, to: Customer, via: customer}
+- {from: HostedOrder, type: has_one, to: Customer, via: customer}
+- {from: RemoteRequest, type: has_one, to: Customer, via: customer}
+- {from: Transaction, type: belongs_to, to: Transaction, via: ref, note: "capture/refund/void reference the original transaction ref"}
+- {from: Agreement, type: has_many, to: Transaction, via: agreement.ref, note: "recurring charges against a stored-card agreement"}
+- {from: Order, type: has_many, to: Webhook, via: webhooks, note: "REST order accepts up to 2 webhook URLs"}

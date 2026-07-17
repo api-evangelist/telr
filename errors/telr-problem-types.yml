@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/telr-openapi.yml
+format: custom-json
+notes: >-
+  Derived from the OpenAPI 4xx responses on the REST Payments API
+  (/api/v1/orders). Telr does NOT use RFC 9457 application/problem+json; the REST
+  API returns a custom ErrorResponse envelope {code, status, reason, errors[]}.
+  The legacy gateway JSON endpoints (order.json, remote.json, manageagreement.json)
+  return HTTP 200 with an in-body "error" object {message, note[, details]} and an
+  authorisation status/code (see errors/telr-decline-codes.yml) rather than HTTP
+  error status codes.
+error_envelope:
+  rest:
+    fields: [code, status, reason, errors]
+    example_schema: openapi/telr-openapi.yml#/components/schemas/ErrorResponse
+  gateway:
+    fields: [error.message, error.note, error.details]
+    example_schema: openapi/telr-openapi.yml#/components/schemas/RemoteResponse
+problems:
+- status: 400
+  title: Bad request
+  reason: Request validation failed (missing/invalid fields).
+  source_operation: openapi/telr-openapi.yml#createOrder
+  envelope: ErrorResponse
+- status: 401
+  title: Unauthorized
+  reason: "HTTP Basic credentials (store id : API key) missing or invalid."
+  source_operation: openapi/telr-openapi.yml#createOrder
+  envelope: ErrorResponse
+- status: 401
+  title: Unauthorized
+  reason: HTTP Basic credentials missing or invalid.
+  source_operation: openapi/telr-openapi.yml#getOrder
+  envelope: ErrorResponse
+- status: 404
+  title: Order not found
+  reason: No order exists for the supplied order ref.
+  source_operation: openapi/telr-openapi.yml#getOrder
+  envelope: ErrorResponse

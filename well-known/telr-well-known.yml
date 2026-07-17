@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: probed
+source: live probe of /.well-known/ discovery paths
+notes: >-
+  Probed the standard /.well-known/ discovery surface on all Telr hosts. None
+  are published (all return HTTP 404). No OIDC/OAuth authorization-server
+  metadata (Telr uses in-body store+authkey and HTTP Basic, not OAuth), no
+  security.txt, no api-catalog, no ai-plugin.json. Absence is valid recorded
+  data; no WellKnown pointer is emitted because no document was found.
+hosts:
+- host: https://secure.telr.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://telr.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.telr.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}

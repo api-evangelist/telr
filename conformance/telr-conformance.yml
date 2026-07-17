@@ -1,0 +1,55 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://telr.com/secure, https://docs.telr.com/reference/3-d-secure,
+  openapi/telr-openapi.yml
+notes: >-
+  Compliance posture is published on telr.com/secure and corroborated by the
+  Central Bank of the UAE Retail Payment Services License. Cross-cutting API
+  standards are derived from the OpenAPI: HTTP Basic on the REST surface, in-body
+  auth on the legacy gateway, EMV 3-D Secure, EMV Secure Remote Commerce (Click
+  to Pay). Telr does NOT use OAuth2/OIDC and does NOT return RFC 9457
+  problem+json.
+standards:
+- id: pci-dss-v4
+  conforms: true
+  evidence: PCI DSS v4.0 Level 1 certified (telr.com/secure)
+- id: nesa
+  conforms: true
+  evidence: NESA (UAE National Electronic Security Authority) certified
+- id: emv-3ds
+  conforms: true
+  evidence: EMV 3-D Secure supported (docs.telr.com/reference/3-d-secure)
+- id: emv-src-click-to-pay
+  conforms: true
+  evidence: EMV Secure Remote Commerce / Click to Pay supported
+- id: gdpr
+  conforms: true
+  evidence: GDPR referenced on telr.com/secure
+- id: cbuae-rpss
+  conforms: true
+  evidence: Central Bank of the UAE Retail Payment Services License
+- id: http-basic-auth
+  conforms: true
+  evidence: openapi securitySchemes basicAuth (REST /api/v1)
+- id: oauth2
+  conforms: false
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: custom {code,status,reason,errors[]} envelope, not application/problem+json
+- id: json-api
+  conforms: false
+- id: hypermedia-hal-links
+  conforms: true
+  evidence: REST Order responses include _links (self, auth)
+compliance_program:
+  published: true
+  url: https://telr.com/secure
+  certifications:
+  - PCI DSS v4.0 Level 1
+  - NESA
+  - EMV 3-D Secure
+  - GDPR
+  - Central Bank of the UAE Retail Payment Services License

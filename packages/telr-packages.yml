@@ -1,0 +1,80 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://pub.dev/packages/telr_mobile_payment_sdk,
+  https://github.com/Telr-PG, https://cocoapods.org/pods/TelrSDK,
+  https://docs.telr.com/reference/introduction-to-mobile-sdks
+notes: >-
+  Telr's first-party client libraries are mobile payment SDKs (Android, iOS,
+  Flutter, React Native) that drive the hosted/seamless checkout, plus official
+  e-commerce platform plugins published under the Telr-PG GitHub organization
+  (github@telr.com). The Flutter package is published by the verified publisher
+  telr.com. The older npm "telr-payment" package is third-party (last published
+  ~2015) and is NOT marked official.
+packages:
+- language: dart
+  registry: pub.dev
+  name: telr_mobile_payment_sdk
+  version: 4.4.0
+  url: https://pub.dev/packages/telr_mobile_payment_sdk
+  install: "telr_mobile_payment_sdk: ^4.4.0"
+  official: true
+  kind: sdk
+  description: >-
+    Flutter plugin wrapping the native Telr iOS/Android SDKs; presents the Telr
+    checkout (cards, Apple Pay, Google Pay, Samsung Pay, Click to Pay, Tabby,
+    Tamara) and returns a success/failure result. Verified publisher telr.com.
+- language: swift
+  registry: cocoapods
+  name: TelrSDK
+  url: https://cocoapods.org/pods/TelrSDK
+  install: "pod 'TelrSDK'"
+  repo: https://github.com/Telr-PG/telr-sdk-ios
+  official: true
+  kind: sdk
+  description: Native iOS payment SDK built with SwiftUI (iOS >= 15.1).
+- language: kotlin
+  registry: docs
+  name: Telr Android SDK
+  url: https://docs.telr.com/reference/android
+  official: true
+  kind: sdk
+  description: Native Android SDK (minSdk >= 21, targetSdk >= 34).
+- language: javascript
+  registry: docs
+  name: Telr React Native SDK
+  url: https://docs.telr.com/reference/react-native
+  official: true
+  kind: sdk
+  description: React Native wrapper over the native Telr mobile SDKs.
+- language: php
+  registry: github
+  name: telr-plugin-woocommerce
+  url: https://github.com/Telr-PG/telr-plugin-woocommerce
+  official: true
+  kind: plugin
+  description: Official WooCommerce payment plugin.
+- language: php
+  registry: github
+  name: telr-plugin-magento2
+  url: https://github.com/Telr-PG/telr-plugin-magento2
+  official: true
+  kind: plugin
+  description: Official Magento 2 payment plugin (also magento, opencart3/4, prestashop, whmcs, odoo).
+third_party:
+- language: javascript
+  registry: npm
+  name: telr-payment
+  url: https://www.npmjs.com/package/telr-payment
+  official: false
+  note: Community Node.js wrapper, last published ~2015; not maintained by Telr.
+- language: dart
+  registry: github
+  name: BisoDevil/TelrFlutter
+  url: https://github.com/BisoDevil/TelrFlutter
+  official: false
+- language: python
+  registry: github
+  name: AliBigdeli/telr-payment-python
+  url: https://github.com/AliBigdeli/telr-payment-python
+  official: false

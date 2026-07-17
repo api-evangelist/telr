@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.telr.com/reference/webhook
+spec_type: Webhooks
+notes: >-
+  Telr documents a webhook (server-to-server) surface but publishes no AsyncAPI
+  document. This artifact captures the webhook event catalog. Webhook target
+  URLs are configured in the Merchant Administration System (and up to two per
+  order on the REST Payments API). Each payload section is signed with a SHA1
+  check value: the merchant concatenates the specified field values with their
+  secret key using colons and compares the SHA1 hash against the received check
+  field.
+delivery:
+  transport: https-post
+  configuration: Merchant Administration System; REST /api/v1/orders accepts up to 2 webhook URLs
+security:
+  scheme: sha1-check
+  check_fields: [tran_check, card_check, bill_check, acquirer_check, account_check]
+  method: SHA1(colon-joined field values + secret key), compared to received check
+event_groups:
+- group: transaction
+  events: [Sale, Void, Refund, Refund Reversal, Auth, Capture, Capture Reversal]
+  payload_fields: >-
+    ~40 fields incl. store id, transaction ref, amount, currency, auth codes,
+    card details (last 4, BIN, issuer), billing information
+  check_field: tran_check
+- group: agreement
+  events: [CHANGE_DATE, CHANGE_DETAILS, FREEZE, STORE_TRANSFER, CANCEL]
+  payload_fields: agreement id, action type, store id, email, timestamps, action-specific fields
+- group: payout
+  events: [payout]
+  payload_fields: [account_id, store_id, payout_id, amount, currency, date, payout_interval, payout_fee]
+  check_field: account_check

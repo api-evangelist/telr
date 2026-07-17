@@ -1,0 +1,16 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/telr-openapi.yml
+skills:
+- file: telr-hosted-checkout.md
+  name: Telr hosted payment page checkout
+  api: openapi/telr-openapi.yml
+  operations: [createHostedOrder]
+- file: telr-remote-transaction.md
+  name: Telr direct (remote) card or wallet transaction
+  api: openapi/telr-openapi.yml
+  operations: [createRemoteTransaction]
+- file: telr-repeat-billing.md
+  name: Telr repeat-billing agreement management
+  api: openapi/telr-openapi.yml
+  operations: [manageAgreement]

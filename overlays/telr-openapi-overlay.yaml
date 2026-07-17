@@ -1,0 +1,33 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Telr Payment Gateway API
+  version: 1.0.0
+extends: openapi/telr-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-17'
+    x-artifacts:
+      authentication: authentication/telr-authentication.yml
+      conventions: conventions/telr-conventions.yml
+      errors: errors/telr-problem-types.yml
+      decline_codes: errors/telr-decline-codes.yml
+      webhooks: asyncapi/telr-webhooks.yml
+      sandbox: sandbox/telr-sandbox.yml
+      lifecycle: lifecycle/telr-lifecycle.yml
+      conformance: conformance/telr-conformance.yml
+      data_model: data-model/telr-data-model.yml
+- target: $.info
+  update:
+    x-agent-ready:
+      idempotency: false
+      test_mode: per-transaction (test flag)
+      auth_styles: [in-body-store-authkey, http-basic]
+- target: $.paths['/gateway/remote.json'].post
+  update:
+    x-decline-codes: errors/telr-decline-codes.yml
+    x-test-cards: sandbox/telr-sandbox.yml
+- target: $.paths['/api/v1/orders'].post
+  update:
+    x-webhooks: asyncapi/telr-webhooks.yml
+    x-idempotency: none-documented

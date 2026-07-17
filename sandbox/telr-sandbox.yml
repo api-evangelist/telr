@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.telr.com/reference/test-cards
+notes: >-
+  Telr test mode is toggled per transaction (test=1 on the legacy gateway,
+  "test": true on the REST Payments API) rather than via separate test keys. Test
+  cards work only in test mode and never for live transactions. All values below
+  are published verbatim by Telr; none are invented.
+test_mode:
+  legacy_gateway: "order.test = 1 (0 = live, 1 = test)"
+  remote: "tran.test = 1"
+  rest_payments: '"test": true'
+cvv_rules:
+  authorised: "123 (American Express: 1234)"
+  declined: "any other CVV declines"
+  on_hold: "999 places the transaction on hold"
+  simulate_response_code: >-
+    Pad the desired response code to three digits with a leading zero and pass it
+    as the CVV. Example: CVV 041 simulates code 41 (Insufficient funds). See
+    errors/telr-decline-codes.yml.
+test_cards:
+- {number: '4000000000000002', scheme: Visa, threeds: false}
+- {number: '4111111111111111', scheme: Visa, threeds: true}
+- {number: '4444333322221111', scheme: Visa, threeds: true}
+- {number: '4444424444444440', scheme: Visa, threeds: true}
+- {number: '4444444444444448', scheme: Visa, threeds: true}
+- {number: '4012888888881881', scheme: Visa, threeds: true}
+- {number: '5105105105105100', scheme: Mastercard, threeds: false}
+- {number: '5454545454545454', scheme: Mastercard, threeds: true}
+- {number: '5555555555554444', scheme: Mastercard, threeds: true}
+- {number: '5555555555555557', scheme: Mastercard, threeds: true}
+- {number: '5581582222222229', scheme: Mastercard, threeds: true}
+- {number: '5641820900097002', scheme: Maestro UK, threeds: true}
+- {number: '371449635398431', scheme: American Express, threeds: false}
+- {number: '343434343434343', scheme: American Express, threeds: false}
+- {number: '3566002020140006', scheme: JCB, threeds: false}
+- {number: '4464040000000007', scheme: MADA, threeds: true}

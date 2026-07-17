@@ -1,0 +1,57 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://docs.telr.com/reference/authentication,
+  https://docs.telr.com/reference/createorder,
+  https://docs.telr.com/reference/webhook, openapi/telr-openapi.yml
+notes: >-
+  Cross-cutting request/response semantics for the Telr gateway. Two auth styles
+  coexist (in-body store+authkey for legacy gateway JSON; HTTP Basic store:apikey
+  for REST /api/v1). Telr does NOT document a dedicated idempotency-key header;
+  duplicate protection is instead provided by unique cartid/cartId per order and
+  server-side duplicate-request locks on some agreement-reporting endpoints, so
+  no /idempoten/ pointer is emitted. See errors/, lifecycle/, authentication/,
+  rate-limits/.
+authentication:
+  styles:
+  - name: in-body store+authkey
+    applies_to: [/gateway/order.json, /gateway/remote.json, /gateway/manageagreement.json]
+    detail: numeric store id + authkey passed inside the JSON request body
+  - name: http-basic
+    applies_to: [/api/v1/*]
+    detail: username = store/merchant id, password = API key
+  ref: authentication/telr-authentication.yml
+idempotency:
+  supported: false
+  mechanism: >-
+    No documented Idempotency-Key header. Duplicate protection via unique
+    cartid/cartId per order (maxLength 63) and server-side duplicate-request
+    locks on some agreement reporting endpoints (same store + auth key).
+pagination:
+  style: date-range
+  detail: >-
+    List/reporting endpoints (agreements, payouts) are bounded by fromdate/todate
+    windows (e.g. max 31 days for forecast/failed agreements, 2 months for
+    cancelled) rather than cursor/offset pagination.
+metadata:
+  cart_reference: cartid / cartId (merchant-supplied unique order id)
+  description: free-text description, maxLength 63
+request_tracing:
+  field: trace
+  detail: Gateway JSON responses return a "trace" identifier for support/debugging.
+versioning:
+  scheme: uri-path
+  detail: REST endpoints under /api/v1; legacy gateway endpoints unversioned.
+  ref: lifecycle/telr-lifecycle.yml
+error_envelope:
+  rest: "{code, status, reason, errors[]}"
+  gateway: "in-body error{message, note[, details]} plus authorisation status letter + code"
+  ref: errors/telr-problem-types.yml
+rate_limit_signaling:
+  detail: No public rate-limit response headers documented; Service API keys can be IP-restricted.
+  ref: rate-limits/telr-rate-limits.yml
+hypermedia:
+  detail: REST Order responses carry _links (self, auth) HAL-style hypermedia.
+webhooks:
+  detail: SHA1-signed server-to-server callbacks for transaction/agreement/payout events.
+  ref: asyncapi/telr-webhooks.yml

@@ -15,7 +15,7 @@ tags:
 - MENA
 - UAE
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 specificationVersion: '0.19'
 apis:
 - aid: telr:telr-hosted-payment-page-api
@@ -210,6 +210,54 @@ common:
   url: https://www.linkedin.com/company/telr
 - url: https://telr.com/blog/
   type: Blog
+- type: Packages
+  url: packages/telr-packages.yml
+- type: SDKs
+  url: packages/telr-packages.yml
+- type: LLMsTxt
+  url: llms/telr-llms.txt
+- type: MCPServer
+  url: mcp/telr-mcp.yml
+- type: Overlay
+  url: overlays/telr-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/telr-conformance.yml
+- type: Compliance
+  url: https://telr.com/secure
+- type: ErrorCatalog
+  url: errors/telr-problem-types.yml
+- type: DeclineCodes
+  url: errors/telr-decline-codes.yml
+- type: Lifecycle
+  url: lifecycle/telr-lifecycle.yml
+- type: Conventions
+  url: conventions/telr-conventions.yml
+- type: Sandbox
+  url: sandbox/telr-sandbox.yml
+- type: DataModel
+  url: data-model/telr-data-model.yml
+- type: Webhooks
+  url: asyncapi/telr-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Postman
+  url: collections/telr.postman_collection.json
+- type: GitHubOrganization
+  url: https://github.com/Telr-PG
+- type: DeveloperPortal
+  url: https://docs.telr.com/
+- type: GettingStarted
+  url: https://docs.telr.com/reference/get-started
+- type: Support
+  url: https://telr.com/contact-us/
+- type: Pricing
+  url: https://telr.com/pricing/
+- type: SignUp
+  url: https://telr.com/get-started/
+- type: TermsOfService
+  url: https://telr.com/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://telr.com/privacy-policy/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

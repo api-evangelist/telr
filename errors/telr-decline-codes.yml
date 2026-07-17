@@ -1,0 +1,101 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.telr.com/reference/authorisation-response-codes
+notes: >-
+  Telr's authorisation response codes. Each transaction response carries a status
+  LETTER and a numeric CODE. Status letters: A = Authorised, H = Authorised but
+  held for manual review, D = Declined, E = Error/invalid request, C = Cancelled,
+  X = Expired. The numeric code disambiguates the reason. In test mode these can
+  be simulated by padding the desired code to three digits and passing it as the
+  CVV (e.g. CVV 041 => code 41 Insufficient funds); see sandbox/telr-sandbox.yml.
+envelope_field: "transaction.status (letter) + transaction.code (number); legacy gateway returns these on the order/transaction status object"
+status_letters:
+  A: Authorised
+  H: Authorised - on hold, manual inspection required
+  D: Declined
+  E: Error / invalid request
+  C: Cancelled
+  X: Expired
+decline_codes:
+- {code: 31, status: D, meaning: Not authorised}
+- {code: 32, status: D, meaning: Original transaction cannot be voided}
+- {code: 34, status: D, meaning: No response}
+- {code: 37, status: D, meaning: Blocked by acquirer}
+- {code: 41, status: D, meaning: Insufficient funds}
+- {code: 42, status: D, meaning: Card security code (CVV) mismatch}
+- {code: 46, status: D, meaning: 3DSecure authentication not available for this card}
+- {code: 47, status: D, meaning: 3DSecure authentication rejected}
+- {code: 49, status: D, meaning: Sold out}
+- {code: 57, status: D, meaning: Continuous authority not available on referenced transaction}
+- {code: 61, status: D, meaning: Refer to card issuer}
+- {code: 62, status: D, meaning: Do not honor}
+- {code: 63, status: D, meaning: Address verification (AVS) mismatch}
+- {code: 64, status: D, meaning: Card security code (CVV) and address (AVS) mismatch}
+- {code: 65, status: D, meaning: Card is not enabled for e-commerce}
+- {code: 66, status: D, meaning: Card cancelled}
+- {code: 67, status: D, meaning: Transaction not permitted by issuer}
+- {code: 68, status: D, meaning: No/invalid account}
+- {code: 71, status: D, meaning: Invalid Terminal configurations}
+- {code: 77, status: D, meaning: Problem with Cybersource configurations}
+- {code: 90, status: D, meaning: Anti-fraud pre-auth}
+- {code: 91, status: D, meaning: Fraud detected by issuer}
+- {code: 92, status: D, meaning: Anti-fraud post-auth}
+- {code: 93, status: D, meaning: Card limits exceeded}
+- {code: 94, status: D, meaning: Terminal limits}
+- {code: 95, status: D, meaning: Not authorised}
+- {code: 96, status: D, meaning: Fraud detected by acquirer}
+- {code: 97, status: D, meaning: Multiple email used with same card}
+- {code: 107, status: D, meaning: Acquirer system error}
+- {code: 108, status: D, meaning: Invalid merchant}
+- {code: 109, status: D, meaning: Invalid transaction}
+- {code: 110, status: D, meaning: Invalid issuer}
+- {code: 111, status: D, meaning: Restricted}
+- {code: 112, status: D, meaning: Closed card/account}
+- {code: 113, status: D, meaning: Authorisation revoked}
+- {code: 114, status: D, meaning: Fraud suspected by issuer}
+- {code: 115, status: D, meaning: Fraud suspected by scheme}
+- {code: 116, status: D, meaning: No/invalid pin}
+- {code: 117, status: D, meaning: Scheme lifecycle/policy}
+- {code: 118, status: D, meaning: Unable to route}
+- {code: 119, status: D, meaning: No/invalid OTP}
+- {code: 120, status: D, meaning: OTP limit exceeded}
+- {code: 121, status: D, meaning: Inactive account}
+- {code: 122, status: D, meaning: Already paid}
+- {code: 123, status: D, meaning: Payment expired}
+- {code: 124, status: D, meaning: Account limit exceeded}
+error_codes:
+- {code: 1, status: E, meaning: Invalid request}
+- {code: 2, status: E, meaning: Transaction cost or currency not supplied}
+- {code: 3, status: E, meaning: Cart ID not set}
+- {code: 4, status: E, meaning: Invalid store ID}
+- {code: 5, status: E, meaning: Transaction cost or currency not valid}
+- {code: 6, status: E, meaning: Invalid transaction mode}
+- {code: 11, status: E, meaning: Invalid card number}
+- {code: 12, status: E, meaning: Card expired}
+- {code: 14, status: E, meaning: Card type mismatch}
+- {code: 15, status: E, meaning: Invalid card security code (CVV)}
+- {code: 16, status: E, meaning: Card security code (CVV) not supplied}
+- {code: 21, status: E, meaning: Card/Currency/Class combination not supported}
+- {code: 22, status: E, meaning: Invalid transaction reference}
+- {code: 23, status: E, meaning: Amount differs from original}
+- {code: 24, status: E, meaning: Currency differs from original}
+- {code: 25, status: E, meaning: Original transaction not authorised}
+- {code: 26, status: E, meaning: Original transaction already voided}
+- {code: 29, status: E, meaning: Amount greater than available balance}
+- {code: 35, status: E, meaning: Unable to refund}
+- {code: 36, status: E, meaning: Previous transaction is on hold}
+- {code: 39, status: E, meaning: Invalid transaction class}
+- {code: 40, status: E, meaning: Invalid transaction type}
+- {code: 52, status: E, meaning: Invalid Transaction Method}
+- {code: 56, status: E, meaning: Duplicate transaction}
+- {code: 58, status: E, meaning: Error connecting to service provider}
+- {code: 60, status: E, meaning: Verification failed}
+- {code: 72, status: E, meaning: Invalid value for split parameter}
+- {code: 73, status: E, meaning: Split Payment not enabled for the store}
+- {code: 74, status: E, meaning: Card token validation failed}
+- {code: 78, status: E, meaning: Timeout at payment processor}
+- {code: 98, status: E, meaning: Internal system error}
+- {code: 99, status: E, meaning: Unknown error}
+other_codes:
+- {code: 33, status: C, meaning: Cancelled}
+- {code: 53, status: X, meaning: Authorisation expired}

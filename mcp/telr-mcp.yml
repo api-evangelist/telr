@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/telr-openapi.yml
+notes: >-
+  No official hosted/remote Telr MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries) as of 2026-07-17. This is a DERIVED
+  candidate tool list mapping each OpenAPI operation to one MCP tool, as a
+  starting point for an agent-native surface.
+server:
+  name: telr
+  transport: http
+tools:
+- name: create_hosted_order
+  description: Create or check a hosted payment page order (order.json).
+  source_operation: openapi/telr-openapi.yml#createHostedOrder
+- name: create_remote_transaction
+  description: Process a direct card or wallet (Apple/Google/Samsung Pay) transaction (remote.json).
+  source_operation: openapi/telr-openapi.yml#createRemoteTransaction
+- name: manage_agreement
+  description: Create, amend, or charge a repeat-billing agreement (manageagreement.json).
+  source_operation: openapi/telr-openapi.yml#manageAgreement
+- name: create_order
+  description: Create an order via the REST Payments API (/api/v1/orders).
+  source_operation: openapi/telr-openapi.yml#createOrder
+- name: get_order
+  description: Retrieve an order and its status by ref (REST Payments API).
+  source_operation: openapi/telr-openapi.yml#getOrder

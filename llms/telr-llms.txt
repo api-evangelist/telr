@@ -1,0 +1,115 @@
+# Telr Documentation
+
+> Documentation for Telr
+
+## API Reference
+- [Integration methods](https://docs.telr.com/reference/get-started.md)
+- [Admin system](https://docs.telr.com/reference/admin-system.md)
+- [EMV® 3-D Secure](https://docs.telr.com/reference/3-d-secure.md)
+- [Webhook](https://docs.telr.com/reference/webhook.md)
+- [Test cards](https://docs.telr.com/reference/test-cards.md)
+- [Response codes](https://docs.telr.com/reference/authorisation-response-codes.md)
+- [Website checklist](https://docs.telr.com/reference/website-checklist-for-merchants.md)
+- [ApplePay Integration](https://docs.telr.com/reference/payment-pages-v2-applepay-integration.md)
+- [Apple Pay on Hosted Payment Page](https://docs.telr.com/reference/apple-pay-on-hosted-payment-page.md)
+- [Apple Pay using Remote JSON API](https://docs.telr.com/reference/configuration-1.md)
+- [Make an ApplePay transaction.](https://docs.telr.com/reference/post_remote_applepay.md)
+- [Samsung Pay Integration](https://docs.telr.com/reference/samsungpay-integration.md)
+- [Samsung Pay on Hosted Payment Page](https://docs.telr.com/reference/samsung-pay-on-hosted-payment-page.md)
+- [Samsung Pay using Remote JSON API](https://docs.telr.com/reference/samsung-pay-using-remote-json-api.md)
+- [Make a Samsung Pay transaction.](https://docs.telr.com/reference/post_samsungpay.md)
+- [Google Pay™ Integration](https://docs.telr.com/reference/google-pay-integration.md)
+- [Google Pay on Hosted Payment Page](https://docs.telr.com/reference/google-pay-on-hosted-payment-page.md)
+- [Google Pay Using Remote JSON](https://docs.telr.com/reference/google-pay-using-remote-json-api.md)
+- [Make a Google Pay transaction.](https://docs.telr.com/reference/post_gateway-remote-json.md)
+- [How it works](https://docs.telr.com/reference/how-the-hosted-payment-page-works.md)
+- [Create session](https://docs.telr.com/reference/payment-page.md): Retrieve URL for hosted payment page
+- [Check status](https://docs.telr.com/reference/check-status-1.md): Verify Transaction/Invoice status
+- [Customer details](https://docs.telr.com/reference/customer-details.md)
+- [iFrame display](https://docs.telr.com/reference/iframe-display.md)
+- [Stored cards](https://docs.telr.com/reference/stored-cards.md)
+- [Repeat billing](https://docs.telr.com/reference/repeat-billing.md)
+- [Change agreement details](https://docs.telr.com/reference/post_gateway-manageagreement-json-2.md): API for updating agreement details using the `changedetails` action.
+- [Change the due date of an existing agreement](https://docs.telr.com/reference/post_gateway-manageagreement-json-3.md): API for updating the due date for one or more agreements by specifying the new date.
+- [Manage Agreement](https://docs.telr.com/reference/post_gateway-manageagreement-json.md): Freeze or unfreeze an agreement within a specified date range.
+- [Retrieve Cancelled Agreements](https://docs.telr.com/reference/post_gateway-cancelledagreement-json.md): Retrieves agreements cancelled within the given date range, including agreements where cancellation takes effect at end of the current billing period. Maximum date range: 2 months.
+- [Retrieve Failed Agreements](https://docs.telr.com/reference/post_gateway-failedagreement-json.md): Retrieves agreements in FAILED status whose most recent failure event falls within the given date range. Maximum date range: 31 days. A duplicate-request lock prevents concurrent requests for the same store and auth key.
+- [Retrieve Forecast Agreements](https://docs.telr.com/reference/post_gateway-forecastagreement-json.md): Retrieves active (RUNNING) agreements whose next payment attempt falls within the given date range. Maximum date range: 31 days. If Fromdate is in the past it is silently adjusted to today. Todate must not be in the past. A duplicate-request lock prevents concurrent requests for the same store and auth key.
+- [Card Change in Repeat Billing Agreement](https://docs.telr.com/reference/card-change-in-repeat-billing-agreement.md)
+- [Set Future Cancel Date in Repeat Billing](https://docs.telr.com/reference/set-future-cancel-date-in-repeat-billing.md)
+- [Repeat Billing Agreement - Date modification](https://docs.telr.com/reference/new-feature-in-repeat-billing-agreement.md)
+- [Transaction detail on Return URL](https://docs.telr.com/reference/transaction-detail-on-return-url.md)
+- [BIN Block](https://docs.telr.com/reference/bin-block.md)
+- [Card Filter](https://docs.telr.com/reference/card-filter.md): Card Filter Feature – API Implementation Guide
+- [Introduction to Seamless](https://docs.telr.com/reference/jssdk-seamless.md)
+- [Sample application](https://docs.telr.com/reference/configuration-4.md)
+- [Introduction to QuickLinks](https://docs.telr.com/reference/introduction-1.md)
+- [Configuration](https://docs.telr.com/reference/configuration.md)
+- [Extra data fields in Quicklink API](https://docs.telr.com/reference/extra-data-fields-in-quicklink-api.md)
+- [Introduction to E-Invoicing](https://docs.telr.com/reference/introduction-to-e-invoicing.md)
+- [Create Invoice](https://docs.telr.com/reference/generating-an-invoice.md)
+- [Remote creation of invoices](https://docs.telr.com/reference/remote-creation-of-invoices.md)
+- [Subscriptions (Recurring Payments)](https://docs.telr.com/reference/subscriptions-recurring-payments.md)
+- [Introduction to Accounts API](https://docs.telr.com/reference/accounts api.md)
+- [Get account payouts](https://docs.telr.com/reference/getpayoutsbyaccountidanddate-1.md): Retrieve all payouts for specific account
+- [Get payout transaction details](https://docs.telr.com/reference/gettransactionsbypayout-1.md): Retrieve all transactions for specific payout
+- [Get pending payouts](https://docs.telr.com/reference/getpendingaccount-1.md): Retrieve all pending payouts for a specific account
+- [Get pending transaction details](https://docs.telr.com/reference/getpendingtransactionbyaccount.md): Retrieve all pending transactions for a specific account
+- [Get accounts information](https://docs.telr.com/reference/getaccounts-1.md): Retrieve all accounts information for the merchant
+- [Introduction to Mobile API](https://docs.telr.com/reference/mobile-api-integration-guide.md)
+- [Security](https://docs.telr.com/reference/security-1.md)
+- [Request methods](https://docs.telr.com/reference/request-methods-1.md)
+- [Transaction types](https://docs.telr.com/reference/transaction-types-1.md)
+- [Request layout](https://docs.telr.com/reference/xml-request-layout.md)
+- [Response](https://docs.telr.com/reference/authorisation-response.md)
+- [Device identification](https://docs.telr.com/reference/device-identification.md)
+- [Request verification](https://docs.telr.com/reference/request-verification.md)
+- [Introduction to Service API](https://docs.telr.com/reference/service-api.md)
+- [API configuration](https://docs.telr.com/reference/api-configuration.md)
+- [Authentication](https://docs.telr.com/reference/authentication.md)
+- [Requests and responses](https://docs.telr.com/reference/requests-responses.md)
+- [Request methods](https://docs.telr.com/reference/request-method-types.md)
+- [Transaction types](https://docs.telr.com/reference/services.md)
+- [Transaction Response](https://docs.telr.com/reference/common-data-elements.md)
+- [Security](https://docs.telr.com/reference/security.md)
+- [Request methods](https://docs.telr.com/reference/request-methods.md)
+- [Transaction types](https://docs.telr.com/reference/transaction-types.md)
+- [3-D Secure](https://docs.telr.com/reference/3d-secure.md)
+- [Response](https://docs.telr.com/reference/authorisation-response-1.md)
+- [Recurring transactions](https://docs.telr.com/reference/recurring-transactions-1.md)
+- [Repeat Billing For Remote](https://docs.telr.com/reference/repeat-billing-for-remote.md)
+- [Introduction](https://docs.telr.com/reference/introduction-c2p.md)
+- [Seamless JS SDK](https://docs.telr.com/reference/c2p-seamless-integration.md)
+- [Remote API](https://docs.telr.com/reference/c2p-remote.md)
+- [Introduction to Split Payments](https://docs.telr.com/reference/split-payment.md)
+- [Onboarding Sub-Merchants](https://docs.telr.com/reference/onboarding-submerchant.md)
+- [Split in Payment API](https://docs.telr.com/reference/multi-split-payments.md)
+- [Quicklink and E-Invoice](https://docs.telr.com/reference/quicklink-and-e-invoice.md)
+- [Debit account](https://docs.telr.com/reference/post_api-v1-accounts-accountid-debit.md): API for debiting an amount from a specified submerchant account by Main merchant.
+- [Credit account](https://docs.telr.com/reference/post_api-v1-accounts-submerchantaccountid-credit.md): API for crediting funds to a specific sub-merchant account by the main merchant.
+- [List split applications for the authenticated merchant](https://docs.telr.com/reference/getapplicationsformerchant.md): Returns all split applications linked to the authenticated merchant across all stores.
+- [List split applications for a store](https://docs.telr.com/reference/getapplicationsbystoreid-1.md): Returns split applications for the given store. The store must belong to the authenticated merchant.
+- [Get a split application by ID](https://docs.telr.com/reference/getapplicationbyid-2.md): Returns a single split application. Must belong to the authenticated merchant.
+- [Introduction to SDKs](https://docs.telr.com/reference/introduction-to-mobile-sdks.md)
+- [Android](https://docs.telr.com/reference/android.md)
+- [iOS](https://docs.telr.com/reference/ios.md)
+- [Flutter](https://docs.telr.com/reference/flutter.md)
+- [React Native](https://docs.telr.com/reference/react-native.md)
+- [Create a new order](https://docs.telr.com/reference/createorder.md)
+- [Get Order Details](https://docs.telr.com/reference/getorder.md): Retrieve details of a specific order.
+- [Introduction To Shopping Carts](https://docs.telr.com/reference/introduction-to-shopping-carts.md)
+- [Magento](https://docs.telr.com/reference/magento.md)
+- [OpenCart](https://docs.telr.com/reference/opencart.md)
+- [PrestaShop](https://docs.telr.com/reference/prestashop.md)
+- [Shopify](https://docs.telr.com/reference/shopify-integration-guide.md)
+- [ZOHO](https://docs.telr.com/reference/zoho-integration-guide.md)
+- [WooCommerce](https://docs.telr.com/reference/woocommerce.md)
+- [ECWID](https://docs.telr.com/reference/ecwid-integration-guide.md)
+- [Odoo](https://docs.telr.com/reference/odoo-integration-guide.md)
+- [WHMCS](https://docs.telr.com/reference/whmcs.md)
+
+## Pages
+- [test page](https://docs.telr.com/test-page.md)
+
+## Changelog
+- [Welcome to Telr API](https://docs.telr.com/changelog/welcome-to-telr-api.md)

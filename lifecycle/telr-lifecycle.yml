@@ -1,0 +1,25 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.telr.com/, openapi/telr-openapi.yml
+notes: >-
+  Telr runs two API generations side by side: the long-standing legacy gateway
+  JSON endpoints (/gateway/*.json) and a newer REST Payments/Service API under a
+  URI-versioned /api/v1 path. No public deprecation policy, RFC 8594
+  Sunset/Deprecation header support, formal SLA document, or public status page
+  was found as of 2026-07-17. No operations are marked deprecated in the OpenAPI.
+versioning:
+  scheme: uri-path
+  current: v1
+  paths:
+    rest: /api/v1
+    legacy_gateway: /gateway/*.json (unversioned, stable)
+  docs: https://docs.telr.com/reference/service-api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation/sunset policy; legacy gateway endpoints remain supported alongside REST.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
