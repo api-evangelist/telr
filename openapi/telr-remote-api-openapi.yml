@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Telr Payment Gateway Agreements Remote API
+  description: 'Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr''s documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.'
+  termsOfService: https://telr.com/terms-conditions/
+  contact:
+    name: Telr Support
+    url: https://docs.telr.com/
+    email: support@telr.com
+  version: '1.0'
+servers:
+- url: https://secure.telr.com
+  description: Telr production gateway (MENA)
+security:
+- basicAuth: []
+tags:
+- name: Remote
+  description: Direct server-to-server card and wallet transactions (remote.json).
+paths:
+  /gateway/remote.json:
+    post:
+      operationId: createRemoteTransaction
+      tags:
+      - Remote
+      summary: Process a direct (remote) card or wallet transaction
+      description: Server-to-server sale/auth transaction. Card details, or an Apple Pay / Google Pay / Samsung Pay wallet token, are submitted directly. Requires appropriate PCI scope for raw card data. Authenticates with store + authkey in the request body.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteRequest'
+      responses:
+        '200':
+          description: Transaction processed (see transaction.status).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteResponse'
+components:
+  schemas:
+    RemoteResponse:
+      type: object
+      properties:
+        trace:
+          type: string
+        transaction:
+          type: object
+          properties:
+            ref:
+              type: string
+            type:
+              type: string
+            class:
+              type: string
+            status:
+              type: string
+            code:
+              type: string
+            message:
+              type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            note:
+              type: string
+            details:
+              type: object
+    RemoteRequest:
+      type: object
+      required:
+      - store
+      - authkey
+      - method
+      - tran
+      properties:
+        store:
+          type: integer
+        authkey:
+          type: string
+        method:
+          type: string
+          enum:
+          - transaction
+          - card
+          - wallet
+        tran:
+          type: object
+          required:
+          - type
+          - class
+          - amount
+          - currency
+          properties:
+            id:
+              type: string
+              description: Cart / order id.
+            type:
+              type: string
+              enum:
+              - sale
+              - auth
+              - capture
+              - refund
+              - void
+            class:
+              type: string
+              enum:
+              - ecom
+              - moto
+              - cont
+              description: ecom = e-commerce, moto = mail/phone order, cont = continuous.
+            description:
+              type: string
+              maxLength: 63
+            amount:
+              type: string
+            currency:
+              type: string
+              example: AED
+            test:
+              type: integer
+              enum:
+              - 0
+              - 1
+            ref:
+              type: string
+              description: Original transaction ref for capture/refund/void.
+        card:
+          type: object
+          properties:
+            number:
+              type: string
+            expiry:
+              type: object
+              properties:
+                month:
+                  type: integer
+                year:
+                  type: integer
+            cvv:
+              type: string
+        applepay:
+          type: object
+          description: Apple Pay token (encrypted payload or decrypted network token).
+        googlepay:
+          type: object
+          description: Google Pay token.
+        samsungpay:
+          type: object
+          description: Samsung Pay token.
+        customer:
+          $ref: '#/components/schemas/Customer'
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: object
+          properties:
+            title:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            line3:
+              type: string
+            city:
+              type: string
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code.
+        phone:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic auth for the REST Service / Payments API: username = store id, password = API key (generated in Merchant Administration under Integrations > Service API). Base64 of "storeid:apikey".'
