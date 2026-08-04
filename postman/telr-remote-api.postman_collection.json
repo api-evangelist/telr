@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "4220e342-3f90-439e-b38c-b24278721d7e",
+    "name": "Telr Payment Gateway Agreements Remote API",
+    "description": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:09:05.000Z",
+    "updatedAt": "2026-07-28T03:09:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4220e342-3f90-439e-b38c-b24278721d7e"
+  },
+  "item": [
+    {
+      "name": "gateway",
+      "item": [
+        {
+          "name": "remote.json",
+          "item": [
+            {
+              "name": "Process a direct (remote) card or wallet transaction",
+              "id": "7ca8e7cb-0ac9-47c4-a992-c6207779b3ba",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"wallet\",\n  \"tran\": {\n    \"type\": \"void\",\n    \"class\": \"moto\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"test\": 1,\n    \"ref\": \"<string>\"\n  },\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expiry\": {\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    },\n    \"cvv\": \"<string>\"\n  },\n  \"applepay\": {},\n  \"googlepay\": {},\n  \"samsungpay\": {},\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gateway/remote.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway",
+                    "remote.json"
+                  ]
+                },
+                "description": "Server-to-server sale/auth transaction. Card details, or an Apple Pay / Google Pay / Samsung Pay wallet token, are submitted directly. Requires appropriate PCI scope for raw card data. Authenticates with store + authkey in the request body."
+              },
+              "response": [
+                {
+                  "id": "13a8952f-b8ba-461f-9269-05921dff9d31",
+                  "name": "Transaction processed (see transaction.status).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"wallet\",\n  \"tran\": {\n    \"type\": \"void\",\n    \"class\": \"moto\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"test\": 1,\n    \"ref\": \"<string>\"\n  },\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expiry\": {\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    },\n    \"cvv\": \"<string>\"\n  },\n  \"applepay\": {},\n  \"googlepay\": {},\n  \"samsungpay\": {},\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateway/remote.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateway",
+                        "remote.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"trace\": \"<string>\",\n  \"transaction\": {\n    \"ref\": \"<string>\",\n    \"type\": \"<string>\",\n    \"class\": \"<string>\",\n    \"status\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"error\": {\n    \"message\": \"<string>\",\n    \"note\": \"<string>\",\n    \"details\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T03:09:05.000Z",
+                  "updatedAt": "2026-07-28T03:09:05.000Z",
+                  "uid": "35240-13a8952f-b8ba-461f-9269-05921dff9d31"
+                }
+              ],
+              "createdAt": "2026-07-28T03:09:05.000Z",
+              "updatedAt": "2026-07-28T03:09:05.000Z",
+              "uid": "35240-7ca8e7cb-0ac9-47c4-a992-c6207779b3ba"
+            }
+          ],
+          "id": "dd22c2ea-bbee-4ac9-b471-b9ea193db15b",
+          "createdAt": "2026-07-28T03:09:05.000Z",
+          "updatedAt": "2026-07-28T03:09:05.000Z",
+          "uid": "35240-dd22c2ea-bbee-4ac9-b471-b9ea193db15b"
+        }
+      ],
+      "id": "e8859001-8a86-4a9e-b3e9-a6b43216ecd1",
+      "createdAt": "2026-07-28T03:09:05.000Z",
+      "updatedAt": "2026-07-28T03:09:05.000Z",
+      "uid": "35240-e8859001-8a86-4a9e-b3e9-a6b43216ecd1"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://secure.telr.com"
+    }
+  ]
+}

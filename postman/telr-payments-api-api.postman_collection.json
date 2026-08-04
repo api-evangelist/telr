@@ -1,0 +1,484 @@
+{
+  "info": {
+    "_postman_id": "65a3845d-9712-4f9d-9171-336691d44d75",
+    "name": "Telr Payment Gateway Agreements Payments API API",
+    "description": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:56.000Z",
+    "updatedAt": "2026-07-28T03:08:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-65a3845d-9712-4f9d-9171-336691d44d75"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{ref}",
+                  "item": [
+                    {
+                      "name": "Retrieve an order (REST Payments API)",
+                      "id": "3b2e326c-434b-4849-91cd-16eaeb3539fd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/orders/:ref",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "orders",
+                            ":ref"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7eedad2b-51a9-4b70-b3f9-9ab10432fc07",
+                              "key": "ref",
+                              "value": "<string>",
+                              "description": "(Required) Order reference."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve an order and its current status by order ref. Authenticates with HTTP Basic auth (store id : API key)."
+                      },
+                      "response": [
+                        {
+                          "id": "410950ac-7cd9-4a30-b584-27e09681956a",
+                          "name": "Order returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/:ref",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                ":ref"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ref"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ref\": \"<string>\",\n  \"status\": \"DECLINED\",\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"auth\": {\n      \"href\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:57.000Z",
+                          "updatedAt": "2026-07-28T03:08:57.000Z",
+                          "uid": "35240-410950ac-7cd9-4a30-b584-27e09681956a"
+                        },
+                        {
+                          "id": "f80e8117-0987-4eb5-be4c-f817ce90319e",
+                          "name": "Unauthorized.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/:ref",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                ":ref"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ref"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:08:57.000Z",
+                          "updatedAt": "2026-07-28T03:08:57.000Z",
+                          "uid": "35240-f80e8117-0987-4eb5-be4c-f817ce90319e"
+                        },
+                        {
+                          "id": "8de44a47-a26e-4db7-ba8b-13748cac94c4",
+                          "name": "Order not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/:ref",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                ":ref"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ref"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:08:57.000Z",
+                          "updatedAt": "2026-07-28T03:08:57.000Z",
+                          "uid": "35240-8de44a47-a26e-4db7-ba8b-13748cac94c4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:08:56.000Z",
+                      "updatedAt": "2026-07-28T03:08:56.000Z",
+                      "uid": "35240-3b2e326c-434b-4849-91cd-16eaeb3539fd"
+                    }
+                  ],
+                  "id": "971b1d72-58de-42ec-ae72-5fda0a74157c",
+                  "createdAt": "2026-07-28T03:08:56.000Z",
+                  "updatedAt": "2026-07-28T03:08:56.000Z",
+                  "uid": "35240-971b1d72-58de-42ec-ae72-5fda0a74157c"
+                },
+                {
+                  "name": "Create an order (REST Payments API)",
+                  "id": "0fc66ce6-e3c0-4daf-9cf0-5c83a29a3fea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  },\n  \"transactionType\": \"AUTH\",\n  \"description\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"webhooks\": [\n    \"<uri>\",\n    \"<uri>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "orders"
+                      ]
+                    },
+                    "description": "Newer REST order-creation endpoint. Authenticates with HTTP Basic auth (store id as username, API key as password). Returns the order with hypermedia _links and up to two webhooks."
+                  },
+                  "response": [
+                    {
+                      "id": "7a237e46-8b69-4340-8006-dba6692a863a",
+                      "name": "Order created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  },\n  \"transactionType\": \"AUTH\",\n  \"description\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"webhooks\": [\n    \"<uri>\",\n    \"<uri>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "orders"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ref\": \"<string>\",\n  \"status\": \"DECLINED\",\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<string>\"\n    },\n    \"auth\": {\n      \"href\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:57.000Z",
+                      "updatedAt": "2026-07-28T03:08:57.000Z",
+                      "uid": "35240-7a237e46-8b69-4340-8006-dba6692a863a"
+                    },
+                    {
+                      "id": "7e887f4a-86dd-405f-956c-98f0e8e971ac",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  },\n  \"transactionType\": \"AUTH\",\n  \"description\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"webhooks\": [\n    \"<uri>\",\n    \"<uri>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "orders"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:08:57.000Z",
+                      "updatedAt": "2026-07-28T03:08:57.000Z",
+                      "uid": "35240-7e887f4a-86dd-405f-956c-98f0e8e971ac"
+                    },
+                    {
+                      "id": "81ba134c-07fa-4254-af3b-747d8b78f07d",
+                      "name": "Unauthorized.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cartId\": \"<string>\",\n  \"amount\": {\n    \"value\": \"<string>\",\n    \"currency\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  },\n  \"transactionType\": \"AUTH\",\n  \"description\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"webhooks\": [\n    \"<uri>\",\n    \"<uri>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "orders"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:08:57.000Z",
+                      "updatedAt": "2026-07-28T03:08:57.000Z",
+                      "uid": "35240-81ba134c-07fa-4254-af3b-747d8b78f07d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:56.000Z",
+                  "updatedAt": "2026-07-28T03:08:56.000Z",
+                  "uid": "35240-0fc66ce6-e3c0-4daf-9cf0-5c83a29a3fea"
+                }
+              ],
+              "id": "4eab239d-b0f0-49ea-911d-95845f2d23ac",
+              "createdAt": "2026-07-28T03:08:56.000Z",
+              "updatedAt": "2026-07-28T03:08:56.000Z",
+              "uid": "35240-4eab239d-b0f0-49ea-911d-95845f2d23ac"
+            }
+          ],
+          "id": "c9b59065-871d-4c57-90a7-336faf4bbf04",
+          "createdAt": "2026-07-28T03:08:56.000Z",
+          "updatedAt": "2026-07-28T03:08:56.000Z",
+          "uid": "35240-c9b59065-871d-4c57-90a7-336faf4bbf04"
+        }
+      ],
+      "id": "d60e82d2-0659-4f64-a985-a0a52d8ddeab",
+      "createdAt": "2026-07-28T03:08:56.000Z",
+      "updatedAt": "2026-07-28T03:08:56.000Z",
+      "uid": "35240-d60e82d2-0659-4f64-a985-a0a52d8ddeab"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://secure.telr.com"
+    }
+  ]
+}

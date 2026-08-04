@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "0c6737ca-1e20-430f-969e-96d1ff37ca22",
+    "name": "Telr Payment Gateway Agreements API",
+    "description": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:54.000Z",
+    "updatedAt": "2026-07-28T03:08:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0c6737ca-1e20-430f-969e-96d1ff37ca22"
+  },
+  "item": [
+    {
+      "name": "gateway",
+      "item": [
+        {
+          "name": "manageagreement.json",
+          "item": [
+            {
+              "name": "Manage a repeat-billing agreement",
+              "id": "a7fe8309-b33c-4907-9599-b2639f576e2a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"manage\",\n  \"agreement\": {\n    \"ref\": \"<string>\",\n    \"type\": \"recurring\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gateway/manageagreement.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway",
+                    "manageagreement.json"
+                  ]
+                },
+                "description": "Create, amend, or charge a recurring repeat-billing agreement against a stored card. Authenticates with store + authkey in the request body."
+              },
+              "response": [
+                {
+                  "id": "39b030bd-921b-4160-b4b2-f77227df2c16",
+                  "name": "Agreement action processed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"manage\",\n  \"agreement\": {\n    \"ref\": \"<string>\",\n    \"type\": \"recurring\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateway/manageagreement.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateway",
+                        "manageagreement.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:08:55.000Z",
+                  "updatedAt": "2026-07-28T03:08:55.000Z",
+                  "uid": "35240-39b030bd-921b-4160-b4b2-f77227df2c16"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:55.000Z",
+              "updatedAt": "2026-07-28T03:08:55.000Z",
+              "uid": "35240-a7fe8309-b33c-4907-9599-b2639f576e2a"
+            }
+          ],
+          "id": "cc9bec7f-89af-44dc-a9eb-21dd40c277e0",
+          "createdAt": "2026-07-28T03:08:55.000Z",
+          "updatedAt": "2026-07-28T03:08:55.000Z",
+          "uid": "35240-cc9bec7f-89af-44dc-a9eb-21dd40c277e0"
+        }
+      ],
+      "id": "481cc753-ca70-405c-9cdc-42bcf759d918",
+      "createdAt": "2026-07-28T03:08:55.000Z",
+      "updatedAt": "2026-07-28T03:08:55.000Z",
+      "uid": "35240-481cc753-ca70-405c-9cdc-42bcf759d918"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://secure.telr.com"
+    }
+  ]
+}

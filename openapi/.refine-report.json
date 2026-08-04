@@ -1,0 +1,20 @@
+{
+  "provider": "telr",
+  "sources": [
+    "telr-agreements-api-openapi.yml",
+    "telr-hosted-payment-page-api-openapi.yml",
+    "telr-payments-api-api-openapi.yml",
+    "telr-remote-api-openapi.yml"
+  ],
+  "outputs": [
+    "telr-agreements-api-openapi.yml",
+    "telr-hosted-payment-page-api-openapi.yml",
+    "telr-payments-api-api-openapi.yml",
+    "telr-remote-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

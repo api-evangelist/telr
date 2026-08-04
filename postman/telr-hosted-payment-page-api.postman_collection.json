@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "1280919c-f320-4250-89e2-caf9a3d9071b",
+    "name": "Telr Payment Gateway Agreements Hosted Payment Page API",
+    "description": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:55.000Z",
+    "updatedAt": "2026-07-28T03:08:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1280919c-f320-4250-89e2-caf9a3d9071b"
+  },
+  "item": [
+    {
+      "name": "gateway",
+      "item": [
+        {
+          "name": "order.json",
+          "item": [
+            {
+              "name": "Create or check a hosted payment page order",
+              "id": "8cba7174-aa69-4ac4-8b89-eb2552a42d97",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"check\",\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"order\": {\n    \"ref\": \"<string>\",\n    \"cartid\": \"<string>\",\n    \"test\": 0,\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"description\": \"<string>\",\n    \"trantype\": \"auth\"\n  },\n  \"return\": {\n    \"authorised\": \"<uri>\",\n    \"declined\": \"<uri>\",\n    \"cancelled\": \"<uri>\"\n  },\n  \"framed\": 0,\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gateway/order.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway",
+                    "order.json"
+                  ]
+                },
+                "description": "Create a hosted payment page order (method=create) and receive a process.html redirect URL, or check the status of an existing order (method=check) by its order ref. Authenticates with store + authkey in the request body (no HTTP auth header)."
+              },
+              "response": [
+                {
+                  "id": "17efbed9-c4a2-47c7-befa-dc60497b5450",
+                  "name": "Order created or status returned.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"check\",\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"order\": {\n    \"ref\": \"<string>\",\n    \"cartid\": \"<string>\",\n    \"test\": 0,\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"description\": \"<string>\",\n    \"trantype\": \"auth\"\n  },\n  \"return\": {\n    \"authorised\": \"<uri>\",\n    \"declined\": \"<uri>\",\n    \"cancelled\": \"<uri>\"\n  },\n  \"framed\": 0,\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateway/order.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateway",
+                        "order.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"method\": \"<string>\",\n  \"trace\": \"<string>\",\n  \"order\": {\n    \"ref\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"cartid\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"text\": \"<string>\"\n    }\n  },\n  \"error\": {\n    \"message\": \"<string>\",\n    \"note\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:56.000Z",
+                  "updatedAt": "2026-07-28T03:08:56.000Z",
+                  "uid": "35240-17efbed9-c4a2-47c7-befa-dc60497b5450"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:56.000Z",
+              "updatedAt": "2026-07-28T03:08:56.000Z",
+              "uid": "35240-8cba7174-aa69-4ac4-8b89-eb2552a42d97"
+            }
+          ],
+          "id": "de68843f-e97c-4a84-8394-3c6f9a6cf93b",
+          "createdAt": "2026-07-28T03:08:56.000Z",
+          "updatedAt": "2026-07-28T03:08:56.000Z",
+          "uid": "35240-de68843f-e97c-4a84-8394-3c6f9a6cf93b"
+        }
+      ],
+      "id": "fa1621e3-bb81-4354-825c-e13feb9c5560",
+      "createdAt": "2026-07-28T03:08:56.000Z",
+      "updatedAt": "2026-07-28T03:08:56.000Z",
+      "uid": "35240-fa1621e3-bb81-4354-825c-e13feb9c5560"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://secure.telr.com"
+    }
+  ]
+}
