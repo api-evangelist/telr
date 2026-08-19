@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telr Payment Gateway Agreements Payments API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an order (REST Payments API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.telr.com/api/v1/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Newer REST order-creation endpoint. Authenticates with HTTP Basic auth (store id as username, API key as password). Returns the order with hypermedia _links and up to two webhooks."
+        },
+        {
+          "info": {
+            "name": "Retrieve an order (REST Payments API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://secure.telr.com/api/v1/orders/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Order reference."
+              }
+            ]
+          },
+          "docs": "Retrieve an order and its current status by order ref. Authenticates with HTTP Basic auth (store id : API key)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

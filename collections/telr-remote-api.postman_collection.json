@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "6db204de-008c-4c17-9cef-7365fd731488",
+      "name": "Remote",
+      "description": {
+        "content": "Direct server-to-server card and wallet transactions (remote.json).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b2c12d7-700f-44e8-916e-8f2a7aecc004",
+          "name": "Process a direct (remote) card or wallet transaction",
+          "request": {
+            "name": "Process a direct (remote) card or wallet transaction",
+            "description": {
+              "content": "Server-to-server sale/auth transaction. Card details, or an Apple Pay / Google Pay / Samsung Pay wallet token, are submitted directly. Requires appropriate PCI scope for raw card data. Authenticates with store + authkey in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gateway",
+                "remote.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"<string>\",\n  \"tran\": {\n    \"type\": \"<string>\",\n    \"class\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"test\": \"<integer>\",\n    \"ref\": \"<string>\"\n  },\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expiry\": {\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    },\n    \"cvv\": \"<string>\"\n  },\n  \"applepay\": \"<object>\",\n  \"googlepay\": \"<object>\",\n  \"samsungpay\": \"<object>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36a4bab7-4067-4ece-bdba-0284bb8167ea",
+              "name": "Transaction processed (see transaction.status).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gateway",
+                    "remote.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"<string>\",\n  \"tran\": {\n    \"type\": \"<string>\",\n    \"class\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"AED\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"test\": \"<integer>\",\n    \"ref\": \"<string>\"\n  },\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expiry\": {\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    },\n    \"cvv\": \"<string>\"\n  },\n  \"applepay\": \"<object>\",\n  \"googlepay\": \"<object>\",\n  \"samsungpay\": \"<object>\",\n  \"customer\": {\n    \"email\": \"<email>\",\n    \"name\": {\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trace\": \"string\",\n  \"transaction\": {\n    \"ref\": \"string\",\n    \"type\": \"string\",\n    \"class\": \"string\",\n    \"status\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"error\": {\n    \"message\": \"string\",\n    \"note\": \"string\",\n    \"details\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.telr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f7e7efa6-aea5-4676-9fa0-79fa47fa2704",
+    "name": "Telr Payment Gateway Agreements Remote API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+      "type": "text/plain"
+    }
+  }
+}

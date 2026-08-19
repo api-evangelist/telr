@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "d160fdbd-9d58-4b53-9f01-db44661fd423",
+      "name": "Agreements",
+      "description": {
+        "content": "Repeat billing / recurring agreement management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "109016ba-7247-4f51-9eae-2a2220fb8fd7",
+          "name": "Manage a repeat-billing agreement",
+          "request": {
+            "name": "Manage a repeat-billing agreement",
+            "description": {
+              "content": "Create, amend, or charge a recurring repeat-billing agreement against a stored card. Authenticates with store + authkey in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gateway",
+                "manageagreement.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"<string>\",\n  \"agreement\": {\n    \"ref\": \"<string>\",\n    \"type\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8637252-ec59-41eb-b5ff-ec78ab4cebc4",
+              "name": "Agreement action processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gateway",
+                    "manageagreement.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"store\": \"<integer>\",\n  \"authkey\": \"<string>\",\n  \"method\": \"<string>\",\n  \"agreement\": {\n    \"ref\": \"<string>\",\n    \"type\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://secure.telr.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e37ab271-38b3-4434-870a-eb44c2e0e7bc",
+    "name": "Telr Payment Gateway Agreements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr's documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.\n\nContact Support:\n Name: Telr Support\n Email: support@telr.com",
+      "type": "text/plain"
+    }
+  }
+}

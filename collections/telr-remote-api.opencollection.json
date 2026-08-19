@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telr Payment Gateway Agreements Remote API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remote",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process a direct (remote) card or wallet transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.telr.com/gateway/remote.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Server-to-server sale/auth transaction. Card details, or an Apple Pay / Google Pay / Samsung Pay wallet token, are submitted directly. Requires appropriate PCI scope for raw card data. Authenticates with store + authkey in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telr Payment Gateway Agreements Hosted Payment Page API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosted Payment Page",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or check a hosted payment page order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.telr.com/gateway/order.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a hosted payment page order (method=create) and receive a process.html redirect URL, or check the status of an existing order (method=check) by its order ref. Authenticates with store + authkey in the request body (no HTTP auth header)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

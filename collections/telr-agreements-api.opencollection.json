@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telr Payment Gateway Agreements API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agreements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Manage a repeat-billing agreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://secure.telr.com/gateway/manageagreement.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create, amend, or charge a recurring repeat-billing agreement against a stored card. Authenticates with store + authkey in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

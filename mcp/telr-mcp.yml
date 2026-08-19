@@ -2,11 +2,9 @@ generated: '2026-07-17'
 method: derived
 status: candidate
 source: openapi/telr-openapi.yml
-notes: >-
-  No official hosted/remote Telr MCP server was found (docs, npm
-  @modelcontextprotocol, MCP registries) as of 2026-07-17. This is a DERIVED
-  candidate tool list mapping each OpenAPI operation to one MCP tool, as a
-  starting point for an agent-native surface.
+notes: No official hosted/remote Telr MCP server was found (docs, npm @modelcontextprotocol, MCP registries)
+  as of 2026-07-17. This is a DERIVED candidate tool list mapping each OpenAPI operation to one MCP tool,
+  as a starting point for an agent-native surface.
 server:
   name: telr
   transport: http
@@ -26,3 +24,9 @@ tools:
 - name: get_order
   description: Retrieve an order and its status by ref (REST Payments API).
   source_operation: openapi/telr-openapi.yml#getOrder
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census
