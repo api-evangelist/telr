@@ -24,6 +24,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/telr.png
 tags:
 - Payments
 - Payment Gateway
+- Fintech
+- MENA
+- UAE
+tags_raw:
+- Payments
+- Payment Gateway
 - FinTech
 - MENA
 - UAE
