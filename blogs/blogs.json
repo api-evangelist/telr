@@ -2,20 +2,20 @@
   "repo": "telr",
   "feeds": [
     {
-      "source": "https://telr.com/blog/rss.xml",
-      "feed_url": "https://telr.com/blog/rss.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
       "source": "https://telr.com/blog/",
       "feed_url": "https://telr.com/blog/rss.xml",
       "title": "",
       "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://telr.com/blog/rss.xml",
+      "feed_url": "https://telr.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-08-30T22:33:40Z"
+  "fetched": "2026-09-06T19:17:18Z"
 }
