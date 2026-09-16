@@ -2,11 +2,10 @@ aid: telr
 url: https://raw.githubusercontent.com/api-evangelist/telr/refs/heads/main/apis.yml
 name: Telr
 kind: company
-description: Telr is a Dubai-headquartered online payment gateway operating across
-  the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies
-  and 30 languages. Its HTTPS/JSON gateway exposes a Hosted Payment Page, a Remote
-  (direct) card and wallet API, repeat-billing agreements, mobile SDKs, and a newer
-  REST Payments API - all PCI DSS v4.0 Level 1 and NESA certified.
+description: Telr is a Dubai-headquartered online payment gateway operating across the MENA region (UAE,
+  Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. Its HTTPS/JSON gateway
+  exposes a Hosted Payment Page, a Remote (direct) card and wallet API, repeat-billing agreements, mobile
+  SDKs, and a newer REST Payments API - all PCI DSS v4.0 Level 1 and NESA certified.
 deliveryModel:
   model: saas
   open_source: false
@@ -48,7 +47,7 @@ tags_raw:
 - MENA
 - UAE
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: telr:telr-accounts-split-payments-api
@@ -65,10 +64,9 @@ apis:
     type: Documentation
   - url: https://docs.telr.com/reference/authentication
     type: APIReference
-  description: >-
-    Marketplace / split-payment Service API for sub-merchant onboarding, multi-split payments, debit/credit
-    of sub-merchant accounts, payouts, and transaction reconciliation. Authenticated with HTTP Basic auth
-    (merchant id as username, API key as password).
+  description: Marketplace / split-payment Service API for sub-merchant onboarding, multi-split payments,
+    debit/credit of sub-merchant accounts, payouts, and transaction reconciliation. Authenticated with
+    HTTP Basic auth (merchant id as username, API key as password).
 - aid: telr:telr-quicklink-einvoicing-api
   name: Telr QuickLink and E-Invoicing API
   tags:
@@ -83,9 +81,8 @@ apis:
     type: Documentation
   - url: https://docs.telr.com/reference/remote-creation-of-invoices
     type: APIReference
-  description: >-
-    Remote creation of QuickLink payment links and e-invoices with extra data fields, for merchants who
-    collect payment without a full checkout integration.
+  description: Remote creation of QuickLink payment links and e-invoices with extra data fields, for merchants
+    who collect payment without a full checkout integration.
 - aid: telr:telr-click-to-pay-api
   name: Telr Click to Pay (C2P) API
   tags:
@@ -100,9 +97,8 @@ apis:
     type: Documentation
   - url: https://docs.telr.com/reference/c2p-remote
     type: APIReference
-  description: >-
-    EMV Secure Remote Commerce (Click to Pay) checkout, available as a seamless integration or through
-    the remote JSON API for tokenized card-on-file payments.
+  description: EMV Secure Remote Commerce (Click to Pay) checkout, available as a seamless integration
+    or through the remote JSON API for tokenized card-on-file payments.
 - aid: telr:telr-agreements-api
   name: Telr Agreements API
   description: Repeat billing / recurring agreement management.
@@ -168,7 +164,7 @@ apis:
   - type: Documentation
     url: https://docs.telr.com/reference/introduction-to-mobile-sdks
 - aid: telr:telr-payments-api-api
-  name: Telr Payments API API
+  name: Telr Payments API
   description: Newer REST order API with HTTP Basic auth.
   humanURL: https://docs.telr.com/reference/how-the-hosted-payment-page-works
   baseURL: https://secure.telr.com/gateway
@@ -266,7 +262,10 @@ common:
   url: llms/telr-llms.txt
 - type: X-MCPServerCandidate
   url: mcp/telr-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: Overlay
   url: overlays/telr-openapi-overlay.yaml
 - type: Conformance
