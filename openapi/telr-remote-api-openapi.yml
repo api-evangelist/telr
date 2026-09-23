@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telr Payment Gateway Agreements Remote API
-  description: 'Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr''s documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.'
+  title: Telr Payment Gateway Remote API
+  description: Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages.
   termsOfService: https://telr.com/terms-conditions/
   contact:
     name: Telr Support
@@ -40,35 +40,6 @@ paths:
                 $ref: '#/components/schemas/RemoteResponse'
 components:
   schemas:
-    RemoteResponse:
-      type: object
-      properties:
-        trace:
-          type: string
-        transaction:
-          type: object
-          properties:
-            ref:
-              type: string
-            type:
-              type: string
-            class:
-              type: string
-            status:
-              type: string
-            code:
-              type: string
-            message:
-              type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            note:
-              type: string
-            details:
-              type: object
     RemoteRequest:
       type: object
       required:
@@ -185,6 +156,35 @@ components:
               description: ISO 3166-1 alpha-2 country code.
         phone:
           type: string
+    RemoteResponse:
+      type: object
+      properties:
+        trace:
+          type: string
+        transaction:
+          type: object
+          properties:
+            ref:
+              type: string
+            type:
+              type: string
+            class:
+              type: string
+            status:
+              type: string
+            code:
+              type: string
+            message:
+              type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            note:
+              type: string
+            details:
+              type: object
   securitySchemes:
     basicAuth:
       type: http

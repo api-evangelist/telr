@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telr Payment Gateway Agreements Payments API API
-  description: 'Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr''s documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.'
+  title: Telr Payment Gateway Payments API
+  description: Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages.
   termsOfService: https://telr.com/terms-conditions/
   contact:
     name: Telr Support
@@ -125,41 +125,6 @@ components:
           items:
             type: string
             format: uri
-    Order:
-      type: object
-      properties:
-        ref:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - AUTHORISED
-          - PAID
-          - CANCELLED
-          - DECLINED
-        cartId:
-          type: string
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-            currency:
-              type: string
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-            auth:
-              type: object
-              properties:
-                href:
-                  type: string
     ErrorResponse:
       type: object
       properties:
@@ -204,6 +169,41 @@ components:
               description: ISO 3166-1 alpha-2 country code.
         phone:
           type: string
+    Order:
+      type: object
+      properties:
+        ref:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - AUTHORISED
+          - PAID
+          - CANCELLED
+          - DECLINED
+        cartId:
+          type: string
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+            currency:
+              type: string
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+            auth:
+              type: object
+              properties:
+                href:
+                  type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telr Payment Gateway Agreements Hosted Payment Page API
-  description: 'Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. This specification models Telr''s documented HTTPS/JSON gateway surfaces: the Hosted Payment Page (order.json), the Remote / Direct API (remote.json, including Apple Pay / Google Pay / Samsung Pay wallet tokens), repeat-billing agreements (manageagreement.json), and the newer REST Payments API (/api/v1/orders). Legacy gateway endpoints authenticate with a numeric store id + authentication key passed in the JSON body; the REST Service/Payments API uses HTTP Basic auth (store id : API key). All transactions are PCI DSS v4.0 Level 1 and NESA certified.'
+  title: Telr Payment Gateway Hosted Payment Page API
+  description: Telr is a UAE-headquartered (Dubai) online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages.
   termsOfService: https://telr.com/terms-conditions/
   contact:
     name: Telr Support
@@ -77,69 +77,6 @@ components:
               type: string
             note:
               type: string
-    HostedOrder:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Existing order ref (used with method=check).
-        cartid:
-          type: string
-          maxLength: 63
-          description: Unique cart / order id.
-        test:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 0 = live, 1 = test.
-        amount:
-          type: string
-          example: '9.50'
-          description: Amount in major currency units.
-        currency:
-          type: string
-          example: AED
-          description: 3-letter ISO 4217 currency code.
-        description:
-          type: string
-          maxLength: 63
-        trantype:
-          type: string
-          enum:
-          - sale
-          - auth
-    Customer:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        name:
-          type: object
-          properties:
-            title:
-              type: string
-            firstName:
-              type: string
-            lastName:
-              type: string
-        address:
-          type: object
-          properties:
-            line1:
-              type: string
-            line2:
-              type: string
-            line3:
-              type: string
-            city:
-              type: string
-            country:
-              type: string
-              description: ISO 3166-1 alpha-2 country code.
-        phone:
-          type: string
     HostedOrderRequest:
       type: object
       required:
@@ -184,6 +121,69 @@ components:
               format: uri
         customer:
           $ref: '#/components/schemas/Customer'
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: object
+          properties:
+            title:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            line3:
+              type: string
+            city:
+              type: string
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code.
+        phone:
+          type: string
+    HostedOrder:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Existing order ref (used with method=check).
+        cartid:
+          type: string
+          maxLength: 63
+          description: Unique cart / order id.
+        test:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 0 = live, 1 = test.
+        amount:
+          type: string
+          example: '9.50'
+          description: Amount in major currency units.
+        currency:
+          type: string
+          example: AED
+          description: 3-letter ISO 4217 currency code.
+        description:
+          type: string
+          maxLength: 63
+        trantype:
+          type: string
+          enum:
+          - sale
+          - auth
   securitySchemes:
     basicAuth:
       type: http
