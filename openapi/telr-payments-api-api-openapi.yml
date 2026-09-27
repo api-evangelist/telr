@@ -84,6 +84,41 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Order:
+      type: object
+      properties:
+        ref:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - AUTHORISED
+          - PAID
+          - CANCELLED
+          - DECLINED
+        cartId:
+          type: string
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+            currency:
+              type: string
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+            auth:
+              type: object
+              properties:
+                href:
+                  type: string
     OrderRequest:
       type: object
       required:
@@ -169,41 +204,6 @@ components:
               description: ISO 3166-1 alpha-2 country code.
         phone:
           type: string
-    Order:
-      type: object
-      properties:
-        ref:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - AUTHORISED
-          - PAID
-          - CANCELLED
-          - DECLINED
-        cartId:
-          type: string
-        amount:
-          type: object
-          properties:
-            value:
-              type: string
-            currency:
-              type: string
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-            auth:
-              type: object
-              properties:
-                href:
-                  type: string
   securitySchemes:
     basicAuth:
       type: http

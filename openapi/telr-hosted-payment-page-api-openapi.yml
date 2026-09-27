@@ -40,6 +40,38 @@ paths:
                 $ref: '#/components/schemas/HostedOrderResponse'
 components:
   schemas:
+    HostedOrder:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Existing order ref (used with method=check).
+        cartid:
+          type: string
+          maxLength: 63
+          description: Unique cart / order id.
+        test:
+          type: integer
+          enum:
+          - 0
+          - 1
+          description: 0 = live, 1 = test.
+        amount:
+          type: string
+          example: '9.50'
+          description: Amount in major currency units.
+        currency:
+          type: string
+          example: AED
+          description: 3-letter ISO 4217 currency code.
+        description:
+          type: string
+          maxLength: 63
+        trantype:
+          type: string
+          enum:
+          - sale
+          - auth
     HostedOrderResponse:
       type: object
       properties:
@@ -77,6 +109,37 @@ components:
               type: string
             note:
               type: string
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: object
+          properties:
+            title:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            line3:
+              type: string
+            city:
+              type: string
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code.
+        phone:
+          type: string
     HostedOrderRequest:
       type: object
       required:
@@ -121,69 +184,6 @@ components:
               format: uri
         customer:
           $ref: '#/components/schemas/Customer'
-    Customer:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        name:
-          type: object
-          properties:
-            title:
-              type: string
-            firstName:
-              type: string
-            lastName:
-              type: string
-        address:
-          type: object
-          properties:
-            line1:
-              type: string
-            line2:
-              type: string
-            line3:
-              type: string
-            city:
-              type: string
-            country:
-              type: string
-              description: ISO 3166-1 alpha-2 country code.
-        phone:
-          type: string
-    HostedOrder:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Existing order ref (used with method=check).
-        cartid:
-          type: string
-          maxLength: 63
-          description: Unique cart / order id.
-        test:
-          type: integer
-          enum:
-          - 0
-          - 1
-          description: 0 = live, 1 = test.
-        amount:
-          type: string
-          example: '9.50'
-          description: Amount in major currency units.
-        currency:
-          type: string
-          example: AED
-          description: 3-letter ISO 4217 currency code.
-        description:
-          type: string
-          maxLength: 63
-        trantype:
-          type: string
-          enum:
-          - sale
-          - auth
   securitySchemes:
     basicAuth:
       type: http

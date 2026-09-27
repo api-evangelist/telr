@@ -40,6 +40,66 @@ paths:
                 $ref: '#/components/schemas/RemoteResponse'
 components:
   schemas:
+    RemoteResponse:
+      type: object
+      properties:
+        trace:
+          type: string
+        transaction:
+          type: object
+          properties:
+            ref:
+              type: string
+            type:
+              type: string
+            class:
+              type: string
+            status:
+              type: string
+            code:
+              type: string
+            message:
+              type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            note:
+              type: string
+            details:
+              type: object
+    Customer:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: object
+          properties:
+            title:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            line3:
+              type: string
+            city:
+              type: string
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code.
+        phone:
+          type: string
     RemoteRequest:
       type: object
       required:
@@ -125,66 +185,6 @@ components:
           description: Samsung Pay token.
         customer:
           $ref: '#/components/schemas/Customer'
-    Customer:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        name:
-          type: object
-          properties:
-            title:
-              type: string
-            firstName:
-              type: string
-            lastName:
-              type: string
-        address:
-          type: object
-          properties:
-            line1:
-              type: string
-            line2:
-              type: string
-            line3:
-              type: string
-            city:
-              type: string
-            country:
-              type: string
-              description: ISO 3166-1 alpha-2 country code.
-        phone:
-          type: string
-    RemoteResponse:
-      type: object
-      properties:
-        trace:
-          type: string
-        transaction:
-          type: object
-          properties:
-            ref:
-              type: string
-            type:
-              type: string
-            class:
-              type: string
-            status:
-              type: string
-            code:
-              type: string
-            message:
-              type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            note:
-              type: string
-            details:
-              type: object
   securitySchemes:
     basicAuth:
       type: http
