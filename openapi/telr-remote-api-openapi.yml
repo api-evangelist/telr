@@ -71,6 +71,35 @@ components:
               description: ISO 3166-1 alpha-2 country code.
         phone:
           type: string
+    RemoteResponse:
+      type: object
+      properties:
+        trace:
+          type: string
+        transaction:
+          type: object
+          properties:
+            ref:
+              type: string
+            type:
+              type: string
+            class:
+              type: string
+            status:
+              type: string
+            code:
+              type: string
+            message:
+              type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            note:
+              type: string
+            details:
+              type: object
     RemoteRequest:
       type: object
       required:
@@ -156,35 +185,6 @@ components:
           description: Samsung Pay token.
         customer:
           $ref: '#/components/schemas/Customer'
-    RemoteResponse:
-      type: object
-      properties:
-        trace:
-          type: string
-        transaction:
-          type: object
-          properties:
-            ref:
-              type: string
-            type:
-              type: string
-            class:
-              type: string
-            status:
-              type: string
-            code:
-              type: string
-            message:
-              type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            note:
-              type: string
-            details:
-              type: object
   securitySchemes:
     basicAuth:
       type: http
