@@ -228,6 +228,9 @@ apis:
   - type: Documentation
     url: https://docs.telr.com/reference/introduction-to-mobile-sdks
 common:
+- type: CapabilityMap
+  url: capabilities/telr-capability-edges.yml
+  name: Telr Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/telr/overview
 - type: AgenticAccess
