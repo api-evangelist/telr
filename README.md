@@ -1,4 +1,4 @@
-# Telr (telr)
+# Telr
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,207 +66,157 @@
 
 Telr is a Dubai-headquartered online payment gateway operating across the MENA region (UAE, Saudi Arabia, Bahrain, Jordan), supporting 120+ currencies and 30 languages. Its HTTPS/JSON gateway exposes a Hosted Payment Page, a Remote (direct) card and wallet API, repeat-billing agreements, mobile SDKs, and a newer REST Payments API - all PCI DSS v4.0 Level 1 and NESA certified.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telr/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telr/refs/heads/main/apis.yml)
+**Areas:** Payments · Payment Gateway · Fintech · MENA · United Arab Emirates
 
-## Tags
+## Telr on APIs.io
 
-- Payments
-- Payment Gateway
-- FinTech
-- MENA
-- UAE
+Everything profiled for Telr is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/telr/](https://apis.io/providers/telr/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-17
-- **Modified:** 2026-07-17
+- [Telr Accounts and Split Payments API](https://apis.io/apis/telr/telr-accounts-split-payments-api/) — Marketplace / split-payment Service API for sub-merchant onboarding, multi-split payments, debit/credit of sub-merchant accounts, payouts, and transaction…
+- [Telr QuickLink and E-Invoicing API](https://apis.io/apis/telr/telr-quicklink-einvoicing-api/) — Remote creation of QuickLink payment links and e-invoices with extra data fields, for merchants who collect payment without a full checkout integration.
+- [Telr Click to Pay (C2P) API](https://apis.io/apis/telr/telr-click-to-pay-api/) — EMV Secure Remote Commerce (Click to Pay) checkout, available as a seamless integration or through the remote JSON API for tokenized card-on-file payments.
+- [Telr Agreements API](https://apis.io/apis/telr/telr-agreements-api/) — Repeat billing / recurring agreement management.
+- [Telr Hosted Payment Page API](https://apis.io/apis/telr/telr-hosted-payment-page-api/) — Redirect-based hosted checkout (order.json).
+- [Telr Payments API](https://apis.io/apis/telr/telr-payments-api-api/) — Newer REST order API with HTTP Basic auth.
+- [Telr Remote API](https://apis.io/apis/telr/telr-remote-api/) — Direct server-to-server card and wallet transactions (remote.json).
 
-## APIs
+### Published properties
 
-### Telr Hosted Payment Page API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Redirect-based hosted checkout. POST order.json with method=create to receive a process.html payment URL branded with your logo/CSS, then method=check to poll order status. Store id + authentication key are passed in the JSON body; no PCI scope required.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.telr.com/reference/how-the-hosted-payment-page-works](https://docs.telr.com/reference/how-the-hosted-payment-page-works)
-- **Base URL:** `https://secure.telr.com/gateway`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Telr Webhooks](https://apis.io/asyncapis/telr/telr-webhooks/)
 
-- Payments
-- Hosted Checkout
-- Redirect
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.telr.com/reference/how-the-hosted-payment-page-works)
-- [API Reference](https://docs.telr.com/reference/createorder)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [telr](https://apis.io/servers/telr/telr/)
 
-### Telr Remote API
+#### Agentic access (1)
 
-Server-to-server direct API (remote.json) giving full control of the checkout UI by capturing card details on your own site. Supports sale/auth/capture/refund/void transactions with ecom, moto, and cont classes; requires appropriate PCI scope for raw card data.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.telr.com/reference/post_gateway-remote-json](https://docs.telr.com/reference/post_gateway-remote-json)
-- **Base URL:** `https://secure.telr.com/gateway`
+- [Telr Agentic Access](https://apis.io/agentic-access/telr/telr-agentic-access/)
 
-#### Tags
+#### Collections (8)
 
-- Payments
-- Direct
-- Server to Server
+Postman and Open Collection request collections.
 
-#### Properties
+- [Telr Payment Gateway Agreements API](https://apis.io/collections/telr/open-telr-agreements-api/)
+- [Telr Payment Gateway Agreements Hosted Payment Page API](https://apis.io/collections/telr/open-telr-hosted-payment-page-api/)
+- [Telr Payment Gateway Agreements Payments API API](https://apis.io/collections/telr/open-telr-payments-api-api/)
+- [Telr Payment Gateway Agreements Remote API](https://apis.io/collections/telr/open-telr-remote-api/)
+- [Telr Payment Gateway Agreements API](https://apis.io/collections/telr/postman-telr-agreements-api/)
+- [Telr Payment Gateway Agreements Hosted Payment Page API](https://apis.io/collections/telr/postman-telr-hosted-payment-page-api/)
+- [Telr Payment Gateway Agreements Payments API API](https://apis.io/collections/telr/postman-telr-payments-api-api/)
+- [Telr Payment Gateway Agreements Remote API](https://apis.io/collections/telr/postman-telr-remote-api/)
 
-- [Documentation](https://telr.com/support/knowledge-base/remote-api-integration-guide/)
-- [API Reference](https://docs.telr.com/reference/post_gateway-remote-json)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+#### Overlays (1)
 
-### Telr Digital Wallets API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Wallet transactions (Apple Pay, Google Pay, Samsung Pay) submitted through remote.json with an encrypted wallet token or decrypted network token, or enabled on the hosted payment page. Same store + authkey body authentication.
+- [Telr Openapi Overlay](https://apis.io/overlays/telr/telr-openapi-overlay/)
 
-- **Human URL:** [https://docs.telr.com/reference/post_remote_applepay](https://docs.telr.com/reference/post_remote_applepay)
-- **Base URL:** `https://secure.telr.com/gateway`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Apple Pay
-- Google Pay
-- Samsung Pay
+- [Telr Authentication](https://apis.io/security/telr/telr-authentication/)
+- [Telr Domain Security](https://apis.io/security/telr/telr-domain-security/)
+- [Telr Trust Center](https://apis.io/security/telr/telr-trust-center/)
+- [Telr Vulnerability Disclosure](https://apis.io/security/telr/telr-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.telr.com/reference/payment-pages-v2-applepay-integration)
-- [API Reference](https://docs.telr.com/reference/post_remote_applepay)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+Published plans, tiers and prices.
 
-### Telr Repeat Billing API
+- [Telr Plans Pricing](https://apis.io/plans/telr/telr-plans-pricing/)
 
-Create, amend, forecast, and cancel recurring repeat-billing agreements against stored cards (manageagreement.json), supporting card change, future cancel dates, and subscription/instalment schedules.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.telr.com/reference/repeat-billing](https://docs.telr.com/reference/repeat-billing)
-- **Base URL:** `https://secure.telr.com/gateway`
+Published request limits.
 
-#### Tags
+- [Telr Rate Limits](https://apis.io/rate-limits/telr/telr-rate-limits/)
 
-- Recurring
-- Subscriptions
-- Agreements
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.telr.com/reference/repeat-billing)
-- [API Reference](https://docs.telr.com/reference/post_gateway-manageagreement-json)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Telr Finops](https://apis.io/finops/telr/telr-finops/)
 
-### Telr Payments REST API
+## Where to find this API
 
-Newer REST order API (/api/v1/orders) authenticated with HTTP Basic auth (store id : API key). Create orders with SALE/AUTH/VERIFY transaction types, up to two webhooks, and hypermedia _links; retrieve status by order ref.
-
-- **Human URL:** [https://docs.telr.com/reference/createorder](https://docs.telr.com/reference/createorder)
-- **Base URL:** `https://secure.telr.com/api/v1`
-
-#### Tags
-
-- Payments
-- REST
-- Orders
-
-#### Properties
-
-- [API Reference](https://docs.telr.com/reference/createorder)
-- [API Reference](https://docs.telr.com/reference/getorder)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-
-### Telr Mobile API and SDKs
-
-Mobile integration that drives the Hosted Payment Page inside a web view, offloading PCI-DSS scope and 3-D Secure handling. Native SDKs are published for Android, iOS, Flutter, and React Native.
-
-- **Human URL:** [https://docs.telr.com/reference/mobile-api-integration-guide](https://docs.telr.com/reference/mobile-api-integration-guide)
-- **Base URL:** `https://secure.telr.com/gateway`
-
-#### Tags
-
-- Mobile
-- Web View
-- SDK
-
-#### Properties
-
-- [Documentation](https://docs.telr.com/reference/mobile-api-integration-guide)
-- [Documentation](https://docs.telr.com/reference/introduction-to-mobile-sdks)
-- [OpenAPI](openapi/telr-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### Telr Accounts and Split Payments API
-
-Marketplace / split-payment Service API for sub-merchant onboarding, multi-split payments, debit/credit of sub-merchant accounts, payouts, and transaction reconciliation. Authenticated with HTTP Basic auth (merchant id : API key).
-
-- **Human URL:** [https://docs.telr.com/reference/split-payment](https://docs.telr.com/reference/split-payment)
-- **Base URL:** `https://secure.telr.com/api/v1`
-
-#### Tags
-
-- Marketplace
-- Split Payments
-- Payouts
-
-#### Properties
-
-- [Documentation](https://docs.telr.com/reference/split-payment)
-- [API Reference](https://docs.telr.com/reference/authentication)
-
-### Telr QuickLink and E-Invoicing API
-
-Remote creation of QuickLink payment links and e-invoices with extra data fields, for merchants who collect payment without a full checkout integration.
-
-- **Human URL:** [https://docs.telr.com/reference/introduction-to-e-invoicing](https://docs.telr.com/reference/introduction-to-e-invoicing)
-- **Base URL:** `https://secure.telr.com/gateway`
-
-#### Tags
-
-- Invoicing
-- Payment Links
-- E-Invoice
-
-#### Properties
-
-- [Documentation](https://docs.telr.com/reference/introduction-to-e-invoicing)
-- [API Reference](https://docs.telr.com/reference/remote-creation-of-invoices)
-
-### Telr Click to Pay (C2P) API
-
-EMV Secure Remote Commerce (Click to Pay) checkout, available as a seamless integration or through the remote JSON API for tokenized card-on-file payments.
-
-- **Human URL:** [https://docs.telr.com/reference/introduction-c2p](https://docs.telr.com/reference/introduction-c2p)
-- **Base URL:** `https://secure.telr.com/gateway`
-
-#### Tags
-
-- Click to Pay
-- Tokenization
-- EMV SRC
-
-#### Properties
-
-- [Documentation](https://docs.telr.com/reference/introduction-c2p)
-- [API Reference](https://docs.telr.com/reference/c2p-remote)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://telr.com/)
 - [Documentation](https://docs.telr.com/)
-- [LinkedIn](https://www.linkedin.com/company/telr)
-- [Plans](plans/telr-plans-pricing.yml)
-- [Rate Limits](rate-limits/telr-rate-limits.yml)
-- [Fin Ops](finops/telr-finops.yml)
+- [Getting started](https://docs.telr.com/reference/get-started)
+- [Pricing](https://telr.com/pricing/)
+- [Sign up](https://telr.com/get-started/)
+- [Support](https://telr.com/contact-us/)
 - [Blog](https://telr.com/blog/)
+- [Compliance](https://telr.com/secure)
+- [Terms of service](https://telr.com/terms-and-conditions/)
+- [Privacy policy](https://telr.com/privacy-policy/)
+- [GitHub](https://github.com/Telr-PG)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 55.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 55.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 68.4 |
+
+**Agent readiness 30.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 37.5** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/telr/](https://apis.io/providers/telr/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Telr: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/telr/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
